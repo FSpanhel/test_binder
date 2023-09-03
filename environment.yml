@@ -1,0 +1,22 @@
+name: dsc
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python
+  - pip
+  # data science
+  - numpy
+  - pandas
+    # - scipy
+  - matplotlib
+  - mlflow
+  # notebook
+  - nb_conda
+  - jupyter
+  - jupytext
+  - jupyter_contrib_nbextensions
+  # install custom package
+  - pip:
+    - rise  # dependencies not available on conda-forge
+    - -e .

@@ -1,0 +1,32 @@
+name: dsc_dev
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python
+  - pip
+  # -- data science
+  - pyexasol
+  - numpy
+  - pandas
+  - matplotlib
+  # - mlflow
+  # -- notebook
+  - nb_conda
+  - jupyter
+  - jupytext
+  - jupyter_contrib_nbextensions
+  # -- good code
+  - flake8
+  - mypy
+  - pandas-stubs  # required so that type hints for pandas work
+  - pre-commit
+  # -- the following 3 packages are only required when I use make to generate the docs
+  # - sphinx
+  # - myst-parser
+  # - linkify-it-py
+  # - sphinx_rtd_theme
+  # install custom package
+  - pip:
+    - rise  # dependencies not available on conda-forge
+    - -e .

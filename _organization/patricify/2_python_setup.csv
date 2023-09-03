@@ -1,0 +1,17 @@
+format,body,additionalText,options,correctOptions,multiple,abstentionsAllowed
+SCALE,"I know what a virtual environment is and why I should use it.",,"AGREEMENT (5)",,false,true
+SCALE,"I know the difference between venv, pip and conda.",,"AGREEMENT (5)",,false,true
+CHOICE,"I write about X% of my code in Jupyter notebooks.",,"0
+20
+40
+60
+80
+100",,false,true
+SCALE,"I know the difference between a Python package and a module.",,"AGREEMENT (5)",,false,true
+BINARY,"I write my own Python packages/modules.",,"Ja
+Nein",,false,true
+CHOICE,"I import my own Python modules by...",,"Putting them in the working directory.
+Adding them to sys.path.
+Adding them to PYTHONPATH.
+Adding them to my custom package which I install in editable mode.
+I don't write my own modules.",,true,true
