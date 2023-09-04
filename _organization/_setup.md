@@ -15,15 +15,15 @@ git remote set-url --add --push origin git@gitlab.lrz.de:fspanhel/dsc_private.gi
 ```
 #### hm
 ```
-git remote add hm git@gitlab.lrz.de:fspanhel/dsc.git;
-git fetch hm main
-git cob hm_2022 hm/main
+# git remote add hm git@gitlab.lrz.de:fspanhel/dsc.git;
+# git fetch hm main;
+# git cob hm_2022 hm/main;
 ```
 
 #### p7
 ```
 git remote add p7 git@gitlab.p7s1.io:ent-bi-data-science/dsc_2022.git;
-git fetch && git co p7/p7
+# git fetch && git co p7/p7
 ```
 
 Note:

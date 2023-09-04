@@ -1,4 +1,4 @@
-# I could also just use one repo by using git checkout main file
+# I could also just use one repo by using git checkout main -- file
 
 
 # copy files to dsc_2022: wd = dsc

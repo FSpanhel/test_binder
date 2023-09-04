@@ -4,52 +4,79 @@ from dsc.shell import (
     run_cmd,
 )
 
+# %% setup
 
-def get_files_for_p7():
+
+class IncludeFiles:
+    # TODO: Put this into the dsc package and exclude it
+
+    def __init__(self, exclude_pattern: list[str] | None = None):
+        if exclude_pattern is None:
+            dot_folders = ["^.dvc", "^.git", ".egg-info"]
+            folders = [
+                "^data",
+                "_cache",
+                "^_",
+                "^docs",
+            ]
+            folders.extend(dot_folders)
+            files = [
+                "/_",
+                "-checkpoint",
+                "^.gitignore_hm"
+            ]
+            exclude_pattern = folders + files
+        self.exclude_pattern = exclude_pattern
+
+    def list(self):
+        return list_files(
+            exclude_pattern=self.exclude_pattern,
+            exclude_files_unknown_to_git=True,
+        )
+
+
+class IncludeFilesForP7(IncludeFiles):
     """
     Returns the files that should be pushed to
     https://gitlab.p7s1.io/ent-bi-data-science/dsc_2022.
     """
-    return " ".join(
-        list_files(
-            ".",
-            exclude_folder_pattern,
-            exclude_file_pattern,
-            exclude_files_unknown_to_git=True,
-        )
-    )
+    def __init__(self):
+        super().__init__()
 
+        general = [
+            "lecture_notes/0_introduction"
+        ]
 
-dot_folders = ["^.dvc", "^.git", ".egg-info"]
-
-exclude_folder_pattern = [
-    "^data",
-    "_cache",  # ruff and mypy
-    "^_",
-    "/_",
-    "^docs",
-]
-
-exclude_folder_pattern.extend(dot_folders)
-exclude_folder_pattern.extend(["lecture_notes/0_introduction"])
-
-exclude_file_pattern = [
-    "^_",
-    "-checkpoint",
-    ".gitignore_hm",
-]
+        self.exclude_pattern.extend(general)
 
 
 target_branch = "p7"
 exists = False
 source_branch = "main"
 
+
 # %% Build command
+# This is required because otherwise it may not be possible to checkout a branch
+# Stashing might be an alternative
+
+
+def assert_wd_clean():
+    conditions = [
+        "nothing to commit, working tree clean",
+        'nothing added to commit but untracked files present (use "git add" to track)'
+    ]
+    if run_cmd("git status")[-1] not in conditions:
+        raise Exception("Git working directory is not clean")
+
+
+assert_wd_clean()
+
+files = IncludeFilesForP7().list()
 commands: list[str] = []
 commands.append(
     checkout_branch_on_the_basis_of_the_initial_commit(target_branch, exists)
 )
-commands.append(f"git checkout {source_branch} -- {get_files_for_p7()}")
+commands.append(f"git checkout {source_branch} -- {files}")
 commands.append(
     f"git commit --no-verify -m \"Add the files of the '{source_branch}' branch\""
 )

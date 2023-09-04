@@ -83,3 +83,4 @@ presentation:
  - Vll. sollten die Studenten nur mit scikit-learn arbeiten dürfen? Dann lernen sie mehr basics
  - Im DVC Kapitel müssen sie gdrive mit hm.dvc2022@gmail.com teilen und nicht mit spanhel@hm.edu
  - Da es mit Windows Probleme gibt, WSL empfehlen!
+ - Evaluation direkt im Kurs machen und nicht online um die Antwortrate zu erhöhen
