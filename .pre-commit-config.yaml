@@ -1,0 +1,70 @@
+exclude: '^docs/conf.py|notebook_as_py/'
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+  - id: check-added-large-files
+  - id: check-ast
+  - id: check-json
+  - id: check-merge-conflict
+  # - id: check-xml
+  # - id: check-yaml
+  - id: debug-statements
+  - id: end-of-file-fixer
+  # - id: requirements-txt-fixer
+  - id: mixed-line-ending
+    args: ['--fix=auto']  # replace 'auto' with 'lf' to enforce Linux/Mac line endings or 'crlf' for Windows
+
+## If you want to avoid flake8 errors due to unused vars or imports:
+# - repo: https://github.com/myint/autoflake
+#   rev: v1.4
+#   hooks:
+#   - id: autoflake
+#     args: [
+#       --in-place,
+#       --remove-all-unused-imports,
+#       --remove-unused-variables,
+#     ]
+
+# Note that Ruff's pre-commit hook should run before Black, isort, and other formatting tools: Source https://beta.ruff.rs/docs/usage/
+# Ruff should also sort imports but it doesn't work
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  # Ruff version.
+  rev: 'v0.0.257'
+  hooks:
+    - id: ruff
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.12.0
+  hooks:
+  - id: isort
+
+- repo: https://github.com/psf/black
+  rev: 23.1.0
+  hooks:
+  - id: black
+    language_version: python3
+    #  args: [--skip-string-normalization]  # activate so that ' is not replaced by "
+
+## If like to embrace black styles even in the docs:
+# - repo: https://github.com/asottile/blacken-docs
+#   rev: v1.12.0
+#   hooks:
+#   - id: blacken-docs
+#     additional_dependencies: [black]
+
+# - repo: https://github.com/PyCQA/flake8
+#   rev: 6.0.0
+#   hooks:
+#  - id: flake8
+#    args: ["--ignore=E501,W503"]  # max line length
+  ## You can add flake8 plugins via `additional_dependencies`:
+  #  additional_dependencies: [flake8-bugbear]
+
+# - repo: https://github.com/pre-commit/mirrors-yapf
+#    rev: 'v0.32.0'  # Use the sha / tag you want to point at
+#    hooks:
+#    -   id: yapf
