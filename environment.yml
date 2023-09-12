@@ -3,20 +3,21 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python
+  - python<3.11  # Do not use the most current Python version because it takes some time that packages update their requirements
   - pip
-  # data science
-  - numpy
-  - pandas
-    # - scipy
-  - matplotlib
-  - mlflow
+  - numpy>=1.24.1, <2
+  - pandas>=1.5.2, <2
+  - matplotlib>=3.6.2, <4
   # notebook
-  - nb_conda
-  - jupyter
-  - jupytext
-  - jupyter_contrib_nbextensions
-  # install custom package
+  - nb_conda>=2.2.1, <3
+  - jupyter=1.0.0
+  - notebook>=6.5.2, <7  # Should be smaller than 7 so that jupyter_contrib_nbextensions and rise can be used
+  - jupytext>=1.14.4, <2
+  - jupyter_contrib_nbextensions=0.7.0
+  # good code
+  - mypy>=0.991
+  - pandas-stubs>=1.5.2  # Required so that type hints for pandas work
+  - pre-commit>=3.4.0
   - pip:
-    - rise  # dependencies not available on conda-forge
+    - rise  # Dependencies not available on conda-forge
     - -e .
