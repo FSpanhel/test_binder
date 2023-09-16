@@ -80,6 +80,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+egg-info
 MANIFEST
 
 # PyInstaller
