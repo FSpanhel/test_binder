@@ -15,11 +15,11 @@
 Everything about the project flow and what I should tell the students in each appointment.
 
 # Roadmap
-    - December 2: Setup, data import and basic feature building.
-    - December 9: Setting up cross-validation for a benchmark model and estimating the prediction error.
-    - December 16: Optimization of feature creation, model fitting, and cross-validation.
-    - December 23: Code modularization and creation of scripts.
-    - January 13: Final discussion on open points.
+  - November 24 and December 1: Setup, data import and basic feature building.
+  - December 8: Setting up cross-validation for a benchmark model and estimating the prediction error.
+  - December 15: Optimization of feature creation, model fitting, and cross-validation.
+  - December 22: Code modularization and creation of scripts.
+  - January 12: Final discussion of open points.
 
 # Appointments
 ## 1. Termin praktischer Teil
