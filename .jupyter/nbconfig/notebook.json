@@ -1,0 +1,45 @@
+{
+    "load_extensions": {
+      "codefolding/main": true,
+      "collapsible_headings/main": true,
+      "qtconsole/qtconsole": false,
+      "ruler/main": true,
+      "toc2/main": true,
+      "code_font_size/code_font_size": true,
+      "python-markdown/main": true,
+      "splitcell/splitcell": true,
+      "hide_input/main": true,
+      "toggle_all_line_numbers/main": true,
+      "exercise/main": false,
+      "exercise2/main": false,
+      "dragdrop": true
+    },
+    "toc2": {
+      "toc_sidebar": false,
+      "toc_position": {
+        "height": "calc(100% - 180px)",
+        "width": "360px",
+        "left": "0px",
+        "top": "200px"
+      },
+      "toc_window_display": true,
+      "navigate_menu": false,
+      "toc_cell": false,
+      "nav_menu": {},
+      "number_sections": true,
+      "sideBar": false,
+      "skip_h1_title": false,
+      "toc_section_display": false
+    },
+    "rise": {
+      "enable_chalkboard": true,
+      "header": "Data Science Challenge",
+      "theme": "sky",
+      "transition": "slide",
+      "slideNumber": "c/t",
+      "width": "99%",
+      "height": "99%",
+      "footer": "Dr. Fabian Spanhel",
+      "scroll": true
+    }
+}

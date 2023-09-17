@@ -1,0 +1,6 @@
+[core]
+    remote = origin
+['remote "origin"']
+    url = gdrive://15vLYuJslaBGh2ZA_oSYk1lKxqKqiZfgt
+['remote "private"']
+    url = gdrive://1R2vF3ajbP50jOvIyEVwAcISdM68ZcjBJ

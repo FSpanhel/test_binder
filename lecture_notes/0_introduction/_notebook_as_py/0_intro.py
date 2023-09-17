@@ -8,13 +8,15 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_2022]
+#     display_name: Python [conda env:dsc_dev] *
 #     language: python
-#     name: conda-env-dsc_2022-py
+#     name: conda-env-dsc_dev-py
 # ---
 
-# %% active="ipynb" hide_input=false slideshow={"slide_type": "notes"} tags=["active-ipynb"]
-# from dsc.notebook import embed_website
+# %% slideshow={"slide_type": "skip"}
+from dsc.notebook import set_wd
+
+set_wd()
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # <div align="center" style="font-size:70px;">
@@ -42,18 +44,10 @@
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # About me
 
-# %% [markdown] cell_style="split" hide_input=false slideshow={"slide_type": "-"}
-# <div align="center">
-# <img src="./figures/0_me.png" alt="Dr. Fabian Spanhel" width="500"/>
-# </div>
-#
-# <div align="left" style="font-size:16px;">
-# <div/>
-
-# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
+# %% [markdown] cell_style="center" slideshow={"slide_type": "-"}
 # <br>
 #
-# <div align="center" style="font-size:40px;">
+# <div style="font-size:40px;">
 # Dr. Fabian Spanhel
 # <div/>
 #     
@@ -111,71 +105,70 @@
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Course objectives
-# - Learn something for your professional life
-# - Learn some the basics of **writing good code which is suitable for production** and usable by ml engineers 
-# - Learn tools and methods to **conduct reproducible data science experiments and to collaborate in a team**
-# - Learn how to model data where the **time dimension** is important
-# - Consolidate what you have learned through a **collaborative practice project**
+# Learn something for your (professional) life! &#128515;
+# - Learn some basics of **writing good code which is suitable for production** and usable by ML engineers.
+# - Learn tools and methods to **conduct reproducible data science experiments and to collaborate in a team**.
+# - Consolidate what you have learned through a **collaborative practice project**.
 #
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Structure of this course
+# # Course outline
 #
-#
+# This course consists of two parts.
 
-# %% [markdown] slideshow={"slide_type": "-"}
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ## First part
-# - The **first part** of this course, **which lasts until November 24**, consists of **prepared lectures**
+# - The **first part**, **which is expected to last until November 23**, consists of **prepared lectures**
 # with notes and tasks that you can tackle in the tutorials.
-# - We will cover 
-#   - Version control
-#   - Setting up a Python project
-#   - Good coding habits
-#   - Project management and collaborative coding
+# - We will cover
+#   - Source code and data version control.
+#   - Setting up and implementing a Python project (Virtual environments, project structure, creating a pip-installable package).
+#   - Good coding habits (Style, type hints, documentation, Git hooks).
+#   - Project management and collaborative coding using Git and GitLab.
 #   - ...
-#   - Model tracking with Mlflow and deployment
-# - The first part is designed to prepare you to successfully master your following **project challenges**.
-# - It is expected that you **have a detailed look at the topics that we discuss in the first part before the second part starts**. Otherwise, you might run out of time in the second part!
-# - Moreover, I recommend that every student uses the first part to **familiarize themselves with the data** for the projects so that they can make an informed decision about their project preferences in the second part.
+#   <!-- - Model tracking with MLflow and deployment. -->
+# - The first part is designed to prepare you to successfully master the following **project challenges** in the **second part**.
+# - It is expected that you **become familiar with the topics that we discuss in the first part before the second part starts**. Otherwise, you might run out of time in the second part!
+# - Moreover, I recommend that every student uses the first part to **investigate the data** for the projects so that they can make an informed decision about their project preferences that they tackle in the second part.
 #
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Second part
-# - In the **second part**, **starting from November 25**, there will be no prepared lectures or task and you will be **working on your project challenge**  during the lecture and tutorial.
-# - You can **choose your project from 3 main [projects]**.
+# - In the **second part**, **expected to start from November 24**, there will be no prepared lectures or tasks and you will be **working on your project challenge**  during the lecture and tutorial.
+# - You can **choose your project from 2 main projects** which are presented [here](1_data_and_projects.ipynb).
 # - Each project should be worked on by about **4 people**. 
-# - Each student has to submit his/her preference for the projects in November by no later than **Wednesday, November 23, 2022**.
-# - For this purpose, write an eMail to spanhel@hm.edu with the subject 'dsc project preference' which includes your full name and an enumerated list containing the numbers of **all** [projects] that is **sorted by your preference**.
-# - Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 25, 2022**. 
+# - Each student has to submit his/her preference for the projects by no later than **Wednesday, November, 1**.
+# - For this purpose, write an eMail to spanhel@hm.edu with the subject '**dsc project preference**' which includes
+#     - Your **full name**.
+#     - The **number of your preferred project**.  
+# - Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 3, 2022**. 
 #   - If there is more than one group for a project, the assignment of students to a group will be random.
-# [projects]: 1_data_and_projects.ipynb#Projects
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # - I will support you during the second part by **answering questions and providing suggestions** during the lecture and tutorial.
-# - Moreover, I will have a look at your code and **approve merge requests** for the main
+# - Moreover, I will have a look at your code and **approve merge requests** for the `main`
 # branch of your project.
 # - I **highly recommend** that we discuss your work on the following topics on the following dates
-#     - December 2: Setup, data import and basic feature building.
-#     - December 9: Setting up cross-validation for a benchmark model and estimating the prediction error.
-#     - December 16: Optimization of feature creation, model fitting, and cross-validation.
-#     - December 23: Code modularization and creation of scripts.
-#     - January 13: Final discussion on open points.
-# - I also recommend that **you have already worked on the topics** that we discuss on a date so that I can provide feedback and suggest further steps. This way you can get the most out of it.
-# - Therefore, you should start your project work from November 25, 2022. 
+#     - November 24 and December 1: Setup, data import and basic feature building.
+#     - December 8: Setting up cross-validation for a benchmark model and estimating the prediction error.
+#     - December 15: Optimization of feature creation, model fitting, and cross-validation.
+#     - December 22: Code modularization and creation of scripts.
+#     - January 12: Final discussion of open points.
+# - I also recommend that **you have already worked on the topics** that we discuss on a meeting so that I can provide feedback and suggest further steps. This way you can get the most out of it. 
 # - I will be able to talk to each group for at least (90 * 2) / [number of groups] minutes during the lecture/tutorial. If a group requires less time, the available time for other groups will increase correspondingly. 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Examination requirements: ModA(0,6) + Präs(0,4)
 #
 # In order to be graded, you have to 
-# 1. **Submit your project code** 
+# 1. **Submit your project code**.
 # 2. **Give a presentation** about your project.
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] hide_input=false slideshow={"slide_type": "slide"}
 # ## Code submission
-# - Before you project starts, you will be provided with a remote Git repo hosted on GitLab with the two branchens `main` and `submission`.
-# - The code of your collaborative project must be submitted <span style="color:red">**before (!)**</span> **Sunday, January 15th, 2023**.
-# - **Submitted means** that at 2023-01-15 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
+# - Before your project starts, you will be provided with a remote Git repo hosted on GitLab with the two branchens `main` and `submission`.
+# - The code of your collaborative project must be submitted <span style="color:red">**before**</span> **Sunday, January 14, 2023**.
+# - **Submitted means** that on 2023-01-14 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
 # - Your project will then be evaluated on the state of the `submission` branch after this attempt has been made.
 # - Note that merge requests that cannot be merged will not be considered and you as a team are responsible for ensuring that I can run your code.
 # - **The code submission should contain the following four components**:  
@@ -185,14 +178,14 @@
 #       1. Loads a provided dataset
 #       2. Engineers the features
 #       3. Trains a model
-#       4. Stores the model, e.g., with Mlflow
+#       4. Stores the model, e.g., with MLflow
 #   4. A **script for predicting data** that can be called from the command line which 
 #       1. Loads a model, e.g., by taking a registered model in Mlflow.
 #       2. Predicts data on the basis of the provided dataset
 #       3. Writes the predicted data to a file   
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Code Grading
+# ## Code grading
 # - **The grading of the code submission focusses on the following points**:
 #   - How was your **organization** as a team? 
 #     - Did you communicate well and approach the challenge in a structured way?
@@ -215,55 +208,55 @@
 #     - How well does your cross validation mimic the use case? 
 #     - Did you consider relevant features?
 #     - It is not important that your model generates top notch predictions. Keep it simple.
-# - The grading for a student takes its **individual performance and the team performance** into account.
-#   - To measure the individual performance, I consider his/her participation in the project work during the lecture and tutorial, his/her code commits/PRs and the quality of his/her written GitLab issues.
+# - The grading for a student takes its **individual performance and the team performance** equally into account.
+#   - To measure the individual performance, I consider his/her participation in the project work during the lecture and tutorial, his/her code commits/MRs and the quality of his/her written GitLab issues.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Presentation
-# - The presentations will take place on **Friday, January 20th, 2023,** in room R2.012 from **15:00-19:00**.
-# - Each group presents their work (task, approach, repo overview, problems, findings, results).
+# - The presentations will take place on **Friday, January 19, 2023,** in room R2.012 from **15:00-19:00**.
+# - Each group presents their work (Task, approach, repo overview, problems, findings, results).
 # - **Each member of a group presents for about 10 minutes** and will be graded individually.
 # - You must attend every presentation, not just your own.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Organization
-# - The Git repository `https://gitlab.lrz.de/fspanhel/dsc`
-#     - Information about the repo, e.g., how to clone it and setup the environment can be found in [README.md](../../README.md).
-#     - The file [COURSE.md](../../COURSE.md) is the **central source of information** for this course.
-#         - Organizational updates in the repo will be mentioned in this file.
-#         - It will be updated regularly.
-#     - Material for the lecture and the tutorial will be provided at [/lecture notes](../lecture_notes).
-# - Data
-#     - Click [here](https://syncandshare.lrz.de/getlink/fiVWchss6RorJVL3LDR47D/dsc.db) to download the first version of the database that we use in this course.
-#     - I recommend to save the database as data/dsc.db in this project (meaning that the parent folder of data is the root of this Git repo)
+# ## The Git course repository
+#
+# - All materials for this course are provided by the GitLab project https://gitlab.lrz.de/dsc/2023/course.
+# - Information about the Git repo, e.g., how to clone it and setup the environment can be found in [README.md](../../README.md).
+# - The file [COURSE.md](../../COURSE.md) contains information about this course that is also covered in this notebook.
+# - Material for the lecture and the tutorial is provided in the folder [lecture notes](../lecture_notes) and will be updated regularly.
+#     
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## The Git playground repository
+# - This Gitlab project https://gitlab.lrz.de/dsc/2023/playground can be used to explore concepts related to Git remotes or GitLab.
+# ## Contact and office hours
 # - Contact
 #     - You can always write an eMail to spanhel@hm.edu
-#     - However, I won't check my eMails on a daily basis and may need some time to respond...
+#     - However, I won't check my eMails on a daily basis and may need some time to respond.
 # - Office hours
 #     - I don't have a regular office hour.
-#     - Just write me an eMail if you want to have a more detailed discussion before/after the lecture starts/tutorial ends.
-# - Moodle
-#     - Do we need a moodle course? 
-#     
+#     - Just write me an eMail if you want to have a discussion before/after the lecture starts/tutorial ends.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Prerequisites
 # Basic knowledge of 
-# - Unix shell, e.g., bash or zsh
+# - Unix shell, e.g., bash or zsh.
 #     - You should know the commands ```pwd, cd, ls, cp, mv``` and now how to access files and directories using ```.., .```
-# - Python3 (basic built-ins, pandas, scikitlearn)
+# - Python3 and standard data science packages like pandas or scikitlearn.
 # - Juypter notebooks
-#     - Starting a notebook from the terminal and viewing it with a browser
-#     - Command/Edit mode. Code and markdown cells.
+#     - Start a notebook from the terminal and viewing it with a browser.
+#     - Command/Edit mode.
+#     - Code and markdown cells.
 # - Git    
-#     - Adding and committing changes to Git
-#     - Working with remotes, e.g., the difference between fetch and pull
-#     - Working with branches, e.g., checkout branches and merging
-#     - See [Git resources](COURSE.md) for brushing up your Git skills
-# - Sql (simple queries with filters and joins)
+#     - Adding and committing changes to Git.
+#     - Working with remotes, e.g., the difference between fetch and pull.
+#     - Working with branches, e.g., checkout branches and merging.
+#     - See [Git resources](COURSE.md) for brushing up your Git skills.
+# - SQL: Simple queries with filters and joins
 #
-# and
-# a basic understanding of statics and machine learning (e.g., linear regression, boosting, trees...).
+# And a basic understanding of statics and machine learning (e.g., linear regression, boosting, trees...).
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Software and Tools
@@ -271,62 +264,120 @@
 # %% [markdown] slideshow={"slide_type": "-"}
 # Click [here](https://davidadrian.cc/definitive-data-scientist-setup/) for general setup recommendations.
 #
-# - For coding, I use a **linux** distribution as **operating systems** via WSL on windows.
-#     - Using MacOS should be no problem
-#     - Using Windows should also be no problem if you can emulate a unix shell like bash, e.g., [WSL] or [Git For Windows](https://gitforwindows.org/)
-#         - I highly recommend to use [WSL]. 
-#         - You can easily access [WSL] via [VSCode] using the [remote extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack). 
-#         - Click [here](https://code.visualstudio.com/docs/remote/remote-overview) for more information.
+# - I use [VSCode] as IDE and recommend to use this IDE for this course.
+# - For coding, I use a **Linux** distribution as **environment** via WSL on windows.
+#     - If you have a unix-based operating system, like Linux or MacOS you should be fine.
+#     - On Windows you should you use the Windows Subsystem for Linux ([WSL]) to run a Linux environment.
+#         - Otherwise, it might happen that some code of this repo does not run.
+#     - You can easily access [WSL] via [VSCode] using the [remote extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack). Click [here](https://code.visualstudio.com/docs/remote/remote-overview) for more information.
 # - We will be using **Python3** for data manipulation and data modeling.
-# - [**Jupyter notebooks**](https://jupyter.org/) (in combination with [RISE](https://rise.readthedocs.io/en/stable/)) will be used for presenting the lecture notes
-# - I use [VSCode] for coding but you can use any IDE (e.g., [PyCharm](https://www.jetbrains.com/de-de/pycharm/)) you want.
-#     - If you want to use VSCode without tracking check these [free release binaries](https://github.com/VSCodium/vscodium/blob/master/README.md#supported-os)
-#     - The following VSCode extensions are useful for this course:
-#         - Python
-#         - Pylance
-#         - GitLens
-#         - GitGraph
+# - [**Jupyter notebooks**](https://jupyter.org/) (in combination with [RISE](https://rise.readthedocs.io/en/stable/)) will be used for presenting the lecture notes.
 #
-# [WSL]: (https://learn.microsoft.com/en-us/windows/wsl/install)
-# [VSCode]: (https://code.visualstudio.com/)
+#
+# [WSL]: https://learn.microsoft.com/en-us/windows/wsl/install
+# [VSCode]: https://code.visualstudio.com/
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # **Sofware and Tools Cont'd**:
 #     
-# - We will be using [**conda**](https://docs.conda.io/en/latest/miniconda.html) (or [mamba](https://github.com/mamba-org/mamba)) for package and environment management
-# - We will be using **Git**, [**DVC**](https://dvc.org/) and **Gitlab** for version control
-# - Gitlab will be used for collaboration and project management
-# - We will be using [**DBeaver**](https://dbeaver.com/edition/) as SQL client software -> **please download DBeaver now!**
-# - We will be using [**Google Drive**](https://www.google.com/intl/de/drive/) or [**LRZ Sync+Share**](https://www.rz.hm.edu/studierende_4/lrz_sync___share_1/index.de.html) for remote data storage. For each project there will be one remote data storage.
-# - For **instant-messaging** you could use [**RocketChat**](https://de.rocket.chat/), [**Slack**](https://slack.com/intl/de-de/) or alternatives...
+# - We use [**conda**](https://docs.conda.io/en/latest/miniconda.html)/[**mamba**](https://github.com/mamba-org/mamba) for package and environment management.
+# - We use **Git**, [**DVC**](https://dvc.org/) and **Gitlab** for version control.
+# - Gitlab will be used for collaboration and project management.
+# - We use [**DBeaver Community**](https://dbeaver.io/download/) as SQL client software.
+# - We use [**Google Drive**](https://www.google.com/intl/de/drive/) for remote data storage. <!-- or [**LRZ Sync+Share**](https://www.rz.hm.edu/studierende_4/lrz_sync___share_1/index.de.html) -->
 # - It's also helpful to have the command 'tree' available in your shell of choice.
+#
+# The installation of all tools is documented in the following chapter.
 #
 # **Please make sure that the software runs on your computer!**
 
-# %% [markdown]
-# # Setting up the repo
+# %% [markdown] slideshow={"slide_type": "slide"}
+# # Setting up the software
 
-# %% [markdown]
-# ## Cloning
-# - To copy this remote repository to a local repository you need [Git] which should already be installed if you are using a unix-based OS. 
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## DBeaver
+# Download and install [DBeaver Community](https://dbeaver.io/download/).
 #
-# - If your OS is Windows you can use [WSL] or [Git For Windows]. 
-#     - I highly recommend to use [WSL]. 
-#     - You can easily access [WSL] via [VSCode] using the [remote extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack). 
-#     - Click [here](https://code.visualstudio.com/docs/remote/remote-overview) for more information.
+# ## Install WSL on Windows
+# If your OS is Windows, please follow the instructions [here](https://learn.microsoft.com/en-us/windows/wsl/install) to install WSL.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Install VSCode
+# Download the official release of VSCode for your OS [here](https://code.visualstudio.com/) or use the [free release binaries](https://github.com/VSCodium/vscodium/blob/master/README.md#supported-os).
 #
+#
+# ### Install VS Code extensions
+# #### Windows-only extensions
+# - If you are using WSL, please install the [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
+# extension.
+# - After it has been installed, connect to WSL via VSCode by opening the command palette [Ctrl+Shift+P] and enter "WSL: Connect to WSL" and click on it. 
+# - In the following, **always connect to WSL** if you are working with VS Code on Windows!
+#
+# #### General extensions
+# Please install the following extensions
+# - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+# - [GitGraph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+#
+#
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# #### Optional extensions
+# You can can also install these optional extensions
+# - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+# - [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
+#
+# #### Short VSCode intro
+# - The sidebar (by default on the left hand side) contains shortcuts to the most important tools.
+#     - Explorer
+#     - Source Control
+#     - ...
+# - The integrated terminal can be used, e.g., to launch Jupyter notebooks or use Git.
+#     - If you are connected to WSL, this is a unix-based shell.
+# - The command palette [Ctrl+Shift+P] gives access to all possible VSCode commands and can be used, e.g., to set the Python interpreter.
+# - To connect to a remote, e.g., WSL, click the button in the lower-left or use the command palette and click "WSL: Connect to WSL".
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Install mambaforge
+# - We will discuss virtual environments later in detail, for now you only need to know that a virtual environment is needed to execute the code of a project.
+# - In order to set up virtual environments we can use [(mini)conda](https://docs.conda.io/en/latest/miniconda.html)/[mamba]/[miniforge](https://github.com/conda-forge/miniforge#miniforge)/[mambaforge](https://github.com/conda-forge/miniforge#mambaforge).
+# - Note that in the following I will use the terms "conda" and "mamba" interchangeably.
+#
+# ### Install mambaforge on a unix-based operating system using a script
+# - Just run `install_mambaforge.sh` in the terminal.
+# - This installs mambaforge and activates it for the `bash` and `zsh` shell.
+#
+# [mamba]: https://github.com/mamba-org/mamba
+
+# %% [markdown] slideshow={"slide_type": "subslide"}
+# ### Installing mambaforge on a unix-based operating systems step by step
+# - Run
+#    ```
+#    wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+#    ``` 
+#    in the terminal or use https://github.com/conda-forge/miniforge/releases to download `mambaforge`.
+# - Run ```bash [Miniconda]``` to install, where [Miniconda] is the installer script, e.g., `Miniconda3-latest-Linux-x86_64.sh`
+# - Press space to scroll down when you reading the terms of usage and type 'yes' to agree to the terms.
+# - Close the terminal or run ```source ~/.bashrc```.
+# - You should now be able to activate mamba by typing ```mamba activate``` in a bash shell.
+# - If not, try ```mamba init bash``` and then ```mamba activate``` again.
+# - Note: If you want to use mamba in a different shell, e.g., `zsh`, run `mamba init [SHELL]`, where `[SHELL]` is the name of a supported shell.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# # Setting up the project repo
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Cloning the repo
+# - To copy the remote repository to a local repository you need [Git] which should already be installed if you are using a unix-based OS. 
+# - If your OS is Windows you can use [WSL] or [Git For Windows], however it is highly recommended to use [WSL].
+# - Click [here](https://docs.gitlab.com/ee/user/ssh.html) how to use SSH keys to communicate with GitLab.
 # - To clone the repo with SSH, run the following command in the terminal.
-#
+#     ```sh
+#     git clone git@gitlab.lrz.de:dsc/2023/course.git
 #     ```
-#     git clone git@gitlab.lrz.de:fspanhel/dsc.git
-#     ```
-#
-# - Clike [here](https://docs.gitlab.com/ee/user/ssh.html) how to use SSH keys to communicate with GitLab.
-#
 # - Alternatively, you can clone with HTTPS using
 #
-#     ```
-#     git clone https://gitlab.lrz.de/fspanhel/dsc.git
+#     ```sh
+#     git clone https://gitlab.lrz.de/dsc/2023/course.git
 #     ```
 # [Git]: https://git-scm.com/
 # [Git for Windows]: https://gitforwindows.org/
@@ -334,47 +385,85 @@
 # [VSCode]: https://code.visualstudio.com/
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Setting up the environment
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# In order to set up the necessary environment you need [(mini)conda](https://docs.conda.io/en/latest/miniconda.html) (or [mamba]).
-#
-# ### Installing miniconda on linux
-# - Run
-# ```wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh``` in the terminal to download miniconda.
-# - Run ```bash Miniconda3-latest-Linux-x86_64.sh``` to install miniconda. Press space to scroll down when you read the terms and agree to them by typing 'yes'.
-# - Close the terminal or run ```source ~/.bashrc```.
-# - You should now be able to activate conda by typing ```conda activate```.
-# - If not, try ```conda init''' and then ```conda activate``` again.
-# [mamba]: https://github.com/mamba-org/mamba
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## Creating the environment
-# - From the root directory of the cloned git repo, you can create the 'dsc' environment by running  ```conda env create -f environment.yml``` in the terminal.
-# - Setting up the environment takes a while (mamba is much faster).
-# - You can activate the environment using ```conda activate dsc```.  
-#
-# - You should always activate the environment when you are working with this Git repo.
+# ## Creating the virtual environment
+# - From the root directory of the cloned Git repo, you can create the `dsc` environment by running  
+#   ```sh
+#   mamba env create -f environment.yml
+#   ```
+#   in the terminal.
+# - Setting up the environment takes a while.
+# - After the environment has been successfully created, you can activate it using ```mamba activate dsc```.  
+# - You should **always activate the environment** when you want to run code of this Git repo or want to use the `dsc` package.
 # - If you are using VS Code you can find [here](https://code.visualstudio.com/docs/python/environments#_work-with-python-interpreters) instructions how to automatically activate the environment when you open the `dsc` folder with VS Code.
+#
+# Note: If something like ```python3 -m dsc...``` does not run, please run ```pip install -e .``` from the root of this repo.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Starting notebook servers
-# In the terminal, run ```jupyter notebook``` to start a notebook server which can be accessed via a browser.
+# ## Configuring and starting notebook servers
+
+# %% [markdown] slideshow={"slide_type": "fragment"}
+# - First of all, activate the `dsc` environment in the terminal.
 # - To set the notebook extensions, run ```python3 -m dsc.notebook``` in the terminal. 
-#   - If ~/.jupyter/nbconfig/notebook.json exists already, please edit ~/.jupyter/nbconfig/notebook.json by considering nbconfig.json accordingly.
-#   - Note that the notebook extensions are only considered the next time you launch a Juypter notebook server.
-# - To present notebooks located in /lecture_notes as slides press alt + r (on Windows). You might need to zoom out so that everything is visible on a slide. 
+# - Run ```jupyter notebook``` in the terminal to start a notebook server that can be accessed via a browser.
+#
+# - To present notebooks located in the folder `lecture_notes` as slides press `alt + r`.
+# - Press `alt + r` again to exit slide mode.
+# - You might need to zoom out so that everything is visible on a slide. 
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Getting data that is not versioned by Git 
+
+# %% [markdown] slideshow={"slide_type": "skip"}
+# <!--
+# ## Download the data
+# - Click [here](https://syncandshare.lrz.de/getlink/fiVWchss6RorJVL3LDR47D/dsc.db) to download the first version of the database that we use in this course. [#TODO]
+# - Save the database as `data/dsc.db` in this project (meaning that the parent folder of data is the root of this Git repo)
+# -->
+
+# %% [markdown] slideshow={"slide_type": "-"} cell_style="split"
+# - Email your Gmail address to spanhelhm@gmail.com
+#     - In case you don't have a Google account, please [create an account](https://accounts.google.com/).
+#     - If you don't want to provide your email or phone number you can use throw-away accounts.
+# - Login to [Gdrive](https://drive.google.com/drive) and check if Fabian Spanhel has shared the folder `origin` with you.
+# - From an activated `dsc` environment run `dvc pull` in the terminal.
+# - You will now be prompted to visit a Google authentication web page.
+#     - See the next slide how to access this web page if you are using WSL. 
+# - Sign in with the Gmail address that you have sent to spanhelhm@gmail.com and check `Select all` on the following webpage.
+# - If the authentication was successful, the file `data/dsc.db` should now exist.
+#
+
+# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
+#
+# <div align="center">
+# <img src="./figures/dvc_gdrive_0.png" alt="drawing" width="600"/>
+# </div>
+
+# %% [markdown] slideshow={"slide_type": "subslide"}
+# ### Using WSL
+# - In our setup, it is not possible to open a browser from WSL.
+# - Therefore, WSL will emulate the following browser window in the terminal when you execute `dvc pull`
+#     <div align="center">
+#     <img src="./figures/wsl_dvc_gdrive_0.png" alt="drawing" width="1000"/>
+#     </div>
+# - Press `A` when this emulated browser window appears.
+# - The emulated browser window then changes to 
+#     <div align="center">
+#     <img src="./figures/wsl_dvc_gdrive_1.png" alt="drawing" width="1000"/>
+#     </div>
+# - Press `Q` to exit the emulated browser window and return to the terminal screen which should look similar to
+#     ```sh
+#     Your browser has been opened to visit:                                  |0/1 [00:00<?,    ?files/s]
+#
+#     https://accounts.google.com/o/oauth2/auth?client_id...www.googleapis.com%2Fauth%2Fdrive.appdata&access_type=offline&response_type=code&approval_prompt=force
+#     ```
+# - Copy the link from the terminal and open it on Windows with a browser.
+# - Perform the steps mentioned on the previous slide.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Ask questions and share impressions
 # You can ask questions verbally at any time directly in this course. 
 #
-# In addition, you can use an **interactive room** provided by https://particify.de/ to
-# - Ask and upvote questions -> Q & A.
-# - Give live feedback.
-# - Answer questions that help me set priorities for the course and get to know you better.
-#
-# From the next week on, I will be posting the link to the corresponding interactive room at the beginning ot the lecture.
+# In addition, I use https://particify.de/ to ask you questions that help me set the priorities for this course and get to know you better.
 #
 # At the **beginning of each exercise**, I will **unlock questions that relate to the following week's material**.
 

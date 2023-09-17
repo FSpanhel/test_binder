@@ -8,7 +8,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_2022] *
+#     display_name: Python [conda env:dsc_2022]
 #     language: python
 #     name: conda-env-dsc_2022-py
 # ---
@@ -325,35 +325,49 @@ embed_website("https://dvc.org/doc/command-reference/remote/add#supported-storag
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # - You can add a local remote store using ```dvc remote add -d myremote path2store```, where myremote is the name of the remote and path2store its location
-# - In this course, will be using a Google drive as DVC remote because it is the simplest way to do it.
-# - **Please set up your own Gdrive account now** (if you don't have one). 
-#     - Go to https://www.google.com/intl/de/drive/ and open Gdrive.
-#     - If you don't want to provide your email or phone number you can use throw-away accounts.
-#     - Create a new folder called "dsc".
-#     - You can share files of this Gdrive with hm.dvc2022@gmail.com.
-# - To do so, we have to extract the **folder id** of the Google drive folder which is given by the letters after folders/
-# - For instance, the folder id of https://drive.google.com/drive/u/2/folders/1YIKU5fNFeBkDOUo4OOlhOIhftd-sj24k is 1YIKU5fNFeBkDOUo4OOlhOIhftd-sj24k
+# - In this course, we use GDrive as DVC remote because it is the simplest way to do it and free of charge.
+# - Sign into [GDrive](https://www.google.com/intl/de/drive/).
+# - Create a new folder called `dsc`.
+# - Extract the **folder id** of the GDrive folder which is given by the letters after `folders/`
+# - For instance, the folder id of https://drive.google.com/drive/u/2/folders/15vLYuJslaBGh2ZA_oSYk1lKxqKqiZfgt is `15vLYuJslaBGh2ZA_oSYk1lKxqKqiZfgt`
 # - Note the Google [drive limits on storage and uploads](https://support.google.com/a/users/answer/7338880?visit_id=637995289613302718-2725308169&rd=1)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # - To add the Google drive remote we use the following command.
 
 # %% slideshow={"slide_type": "-"}
-!dvc remote add -d -f dvc_gdrive gdrive://1YIKU5fNFeBkDOUo4OOlhOIhftd-sj24k
+!dvc remote add -d -f origin gdrive://1UsBl0O7MYHVOVBWKpySxmCqGhb5yF2p-
 
-# %% [markdown] slideshow={"slide_type": "-"}
-# - With the flag -d this becomes the default remote.
-# - With the flag -f this adds the remote even if it has already been added.
-# - Before we push, we **need to share the corresponding Google Drive folder to at least one other person or group** (!)
-#     - To do so, right-click on the created dsc folder and enter the email address (e.g., hm.dvc2022@gmail.com) of the person you want to share this folder with.
-#     - Sharing this folder by a link is not sufficient.
-#     - It may also be necessary to allow everybody with this link to edit the element.
+# %% slideshow={"slide_type": "-"}
+- With the flag -d this becomes the default remote.
+- With the flag -f this adds the remote even if it has already been added.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# We can also investigate file differences between the cache and the remote storage.
+# We can investigate file differences between the cache and the remote storage using
 
 # %% slideshow={"slide_type": "-"}
 !dvc status -c
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Sharing the GDrive remote with others
+# - Other user can interact with the GDrive remote using DVC if you share the GDrive folder with them.
+# - To share your GDrive folder with other persons, right-click on the created dsc folder and enter the Gmail address (e.g., spanhelhm@gmail.com) of the person you want to share this folder with and grant the `Editor` role.
+#     - Sharing this folder by a link is **not sufficient**.
+#     - In previous versions of DVC it was also necessary to share the GDrive folder with at least one other person before an interaction with the remote was possible (?).
+
+# %% [markdown] slideshow={"slide_type": "-"}
+# ### Authentication
+# - If you run a command that interacts with a GDrive remote like `dvc status -c` or `dvc push` or `dvc pull` for the first time, you will be prompted to visit a Google authentication web page.
+#     - See section [11.3.1 of lectures_notes/0_introduction/0_intro.ipynb](../0_introduction/0_intro.ipynb#Using-WSL) how to access this web page if you are using WSL.
+# - In this case, sign in with your Google account and check `Select all` on the webpage to give DVC access.
+# - The authentication credentials will then be cached globally to a .json file with location given in the bullet point [gdrive_user_credentials_file](https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive#configuration-parameters).
+# - Note that, by default, the credentials .json file is not located within the Git repo and the file should never be tracked by Git.
+# - In case you have problems to authenticate, for instance,
+#     ```
+#     ERROR: unexpected error - Failed to authenticate GDrive: Access token refresh failed: invalid_grant: Bad Request
+#     ```
+#     <!-- https://discuss.dvc.org/t/manually-prompt-gdrive-authentication-step/858/4 -->
+#   it is best to remove the credential file and authorize again.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Push data to remotes: dvc push
