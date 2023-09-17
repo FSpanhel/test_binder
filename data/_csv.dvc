@@ -1,0 +1,7 @@
+outs:
+- md5: 24f13d25837e380825a62bcd2ef9a51b.dir
+  size: 76204984
+  nfiles: 18
+  hash: md5
+  path: _csv
+  remote: private

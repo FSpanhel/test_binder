@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.15.1
+#       jupytext_version: 1.14.4
 #   kernelspec:
 #     display_name: Python [conda env:dsc_dev] *
 #     language: python
@@ -185,7 +185,7 @@ set_wd()
 #       3. Writes the predicted data to a file   
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Code Grading
+# ## Code grading
 # - **The grading of the code submission focusses on the following points**:
 #   - How was your **organization** as a team? 
 #     - Did you communicate well and approach the challenge in a structured way?
@@ -410,12 +410,54 @@ set_wd()
 # - Press `alt + r` again to exit slide mode.
 # - You might need to zoom out so that everything is visible on a slide. 
 
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Getting data that is not versioned by Git 
+
 # %% [markdown] slideshow={"slide_type": "skip"}
 # <!--
 # ## Download the data
 # - Click [here](https://syncandshare.lrz.de/getlink/fiVWchss6RorJVL3LDR47D/dsc.db) to download the first version of the database that we use in this course. [#TODO]
 # - Save the database as `data/dsc.db` in this project (meaning that the parent folder of data is the root of this Git repo)
 # -->
+
+# %% [markdown] slideshow={"slide_type": "-"} cell_style="split"
+# - Email your Gmail address to spanhelhm@gmail.com
+#     - In case you don't have a Google account, please [create an account](https://accounts.google.com/).
+#     - If you don't want to provide your email or phone number you can use throw-away accounts.
+# - Login to [Gdrive](https://drive.google.com/drive) and check if Fabian Spanhel has shared the folder `origin` with you.
+# - From an activated `dsc` environment run `dvc pull` in the terminal.
+# - You will now be prompted to visit a Google authentication web page.
+#     - See the next slide how to access this web page if you are using WSL. 
+# - Sign in with the Gmail address that you have sent to spanhelhm@gmail.com and check `Select all` on the following webpage.
+# - If the authentication was successful, the file `data/dsc.db` should now exist.
+#
+
+# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
+#
+# <div align="center">
+# <img src="./figures/dvc_gdrive_0.png" alt="drawing" width="600"/>
+# </div>
+
+# %% [markdown] slideshow={"slide_type": "subslide"}
+# ### Using WSL
+# - In our setup, it is not possible to open a browser from WSL.
+# - Therefore, WSL will emulate the following browser window in the terminal when you execute `dvc pull`
+#     <div align="center">
+#     <img src="./figures/wsl_dvc_gdrive_0.png" alt="drawing" width="1000"/>
+#     </div>
+# - Press `A` when this emulated browser window appears.
+# - The emulated browser window then changes to 
+#     <div align="center">
+#     <img src="./figures/wsl_dvc_gdrive_1.png" alt="drawing" width="1000"/>
+#     </div>
+# - Press `Q` to exit the emulated browser window and return to the terminal screen which should look similar to
+#     ```sh
+#     Your browser has been opened to visit:                                  |0/1 [00:00<?,    ?files/s]
+#
+#     https://accounts.google.com/o/oauth2/auth?client_id...www.googleapis.com%2Fauth%2Fdrive.appdata&access_type=offline&response_type=code&approval_prompt=force
+#     ```
+# - Copy the link from the terminal and open it on Windows with a browser.
+# - Perform the steps mentioned on the previous slide.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Ask questions and share impressions
