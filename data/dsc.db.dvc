@@ -1,0 +1,6 @@
+outs:
+- md5: a3f9d2ca90bf4494f30f4ff5aa89865a
+  size: 51650560
+  hash: md5
+  path: dsc.db
+  remote: origin
