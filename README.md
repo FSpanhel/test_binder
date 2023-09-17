@@ -1,10 +1,20 @@
+- [Data Science Challenge](#data-science-challenge)
+- [Repo Structure](#repo-structure)
+- [Package Documentation](#package-documentation)
+- [Installation](#installation)
+  - [Cloning the Git repo](#cloning-the-git-repo)
+  - [Creating and activating the environment](#creating-and-activating-the-environment)
+  - [Configuring and starting notebook servers](#configuring-and-starting-notebook-servers)
+  - [Getting data that is not versioned by Git](#getting-data-that-is-not-versioned-by-git)
+- [Note](#note)
+
 # Data Science Challenge
 
 - This repo provides all materials for this course.
 - Information about the course can be found in [COURSE.md](COURSE.md).
-- Note that notebooks or programs in this repo should be run in the corresponding [environment](#environment).
+- Note that notebooks or other code in this repo should be run in the corresponding [environment](#creating-and-activating-the-environment).
 
-## Repo Organization
+# Repo Structure
 Description of relevant folders and files:
 ```
 ├── AUTHORS.md              <- List of developers and maintainers.
@@ -20,11 +30,11 @@ Description of relevant folders and files:
 ├── src/dsc                 <- Python package that is used for this course.
 ```
 
-## Documentation
-Open the [docs](docs/index.html) with a browser to see the documentation of this repo.
+# Package Documentation
+Open the [docs](docs/index.html) with a browser to see the documentation of the package of this repo.
 
-## Installation
-### Cloning
+# Installation
+## Cloning the Git repo
 To copy this remote repository to a local repository you need [Git] which should already be installed if you are using a unix-based OS.
 
 If your OS is Windows you can use [WSL] or [Git For Windows].
@@ -48,7 +58,7 @@ git clone https://gitlab.lrz.de/dsc/2023/course.git
 ```
 
 
-### Creating and activating the environment
+## Creating and activating the environment
 - In order to set up the necessary environment you need [(mini)conda](https://docs.conda.io/en/latest/miniconda.html) (or [mamba]).
 - From the root directory of the cloned Git repo, you can create the 'dsc' environment by running  ```conda env create -f environment.yml``` in the terminal.
 - You can activate the environment using ```conda activate dsc```.  
@@ -57,7 +67,7 @@ git clone https://gitlab.lrz.de/dsc/2023/course.git
 
 Note: If something like ```python3 -m dsc...``` does not run, please run ```pip install -e .``` from the root of this repo.
 
-### Configuring and starting notebook servers
+## Configuring and starting notebook servers
 - First of all, activate the `dsc` environment in the terminal.
 - To set the notebook extensions, run ```python3 -m dsc.notebook``` in the terminal.
 - Run ```jupyter notebook``` in the terminal to start a notebook server that can be accessed via a browser.
@@ -67,7 +77,18 @@ Note: If something like ```python3 -m dsc...``` does not run, please run ```pip 
 
 <!-- pyscaffold-notes -->
 
-## Note
+## Getting data that is not versioned by Git
+- Email your Gmail address to spanhelhm@gmail.com
+    - In case you don't have a Google account, please [create an account](https://accounts.google.com/).
+    - If you don't want to provide your email or phone number you can use throw-away accounts.
+- Login to [Gdrive](https://drive.google.com/drive) and check if Fabian Spanhel has shared the folder `origin` with you.
+- From an activated `dsc` environment run `dvc pull` in the terminal.
+- You will now be prompted to visit a Google authentication web page.
+    - See the section 11.3.1 of [lectures_notes/0_introduction/0_intro.ipynb]([lectures_notes/0_introduction/0_intro.ipynb) how to access this web page if you are using WSL.
+- Sign in with the Gmail address that you have sent to spanhelhm@gmail.com and check `Select all` on the following webpage.
+- If the authentication was successful, the file `data/dsc.db` should now exist.
+
+# Note
 
 This project has been set up using [PyScaffold] 4.3.1.
 

@@ -1,6 +1,5 @@
 - [x] conda install windows, path not found
 - [x] how to activate the environment
-- why envs in der 1. veranstaltung bzw klonen und conda env mit allen durchgehe
 - [x] add style for rise
 - [x] update 0.0 use wsl!
 - [x] Add more to versioning Jupyter notebooks
@@ -20,27 +19,87 @@
 - [ ] md aus lecture machen und auf gitlab verfügbar machen
 - [ ] figures verkleinern bzw width entfernen bevor zu markdown konvertieren
 
-- Sachen rausschmeißen die ich nicht brauch
-  - 0.1: Audio matching kürzen
-  - clustered_answers_1st_quizzie nicht mit den studenten besprechen (nur für mich)
-  - 1.0:
-    - Wieso Git Git heißt weglassen
-    - Git-LFS weglassen, nur sagen dass wir es nich nutzen weil es mitm remote storage schwierig wird?
-- Rename lecture_notes/introduction into lecture_notes/data_and_projects?
-- In der Vorlesung sollen die Studenten die Aufgaben auch schon machen (d.h., bei Git dann gemeinsam rebasen und nicht erst in der Übung)
-- Virtual envs zuerst durchnehmen! + Bei Intro Übersicht über die Kapitel hinzufügen (1. Block Env, Git, Folder)
+# Learnings:
+- I need to set toc:sideBar to false in the notebook meta data so that the toc is displayed correcty!
+      "toc_position": {
+        "height": "734px",
+        "width": "360px",
+        "left": "0px",
+        "top": "200px"
+      },
+- I can add a custom nb configuration to a repo as described in nbconfig/_README.md
+- https://stackoverflow.com/a/76956283
+
+conda vars:
+in der lock env file:
+variables:
+  JUPYTER_CONFIG_DIR: /home/spa0001f/github/teach/dsc_new/.jupyter
+but not in environment.yml -> can not specify here
+
+
+
+lecture_notes/intro_and_setup
+# Einführung
+- [x] Sheldon Bild raus und was ich so mache (fachlich ausbilden)
+- Update von intro.pynb
+- [x] Kurze Einführung in VS Code (install)
+- [x] WSL für Windows Nutzer
+- Shell Einführung -> Nö
+- [x] env installieren -> DONE
+- [x] Notebook starten -> TOC wird nicht richtig angezeigt, Browser Problem? -> fixed
+- [x] Umstellen des Repos auf Gruppenrepo damit kein Projektlimit, siehe https://doku.lrz.de/gitlab-10332895.html#GitLab-Projektlimit
+- [ ] Evtl. sagen dass ChatGPT NLP Leute vertreibt? + Slide einfügen nach Slide 5. DS is very competitive (Bootcamps, Masters), fancy shit, viele Unternehmen sind nicht so weit, Überangebot an Leute die das wollen.
+- [ ] Setup new repos (course & playground) -> need a commit there first
+- [ ] Add pdoc -> remove from commit_to_hm_branch.py
+- [x] Add dvc for data:
+  - [x] Add to environment.yml
+  - [x] Add dvc remotes:
+    - Deleted ~/.cache/pydrive2fs/710796635688-iivsgbgsb6uv1fap6635dhvuei09o66c.apps.googleusercontent.com/default.json to reauthenticate, see https://discuss.dvc.org/t/manually-prompt-gdrive-authentication-step/858/4
+    - Remote origin is for public data: https://drive.google.com/drive/u/0/folders/15vLYuJslaBGh2ZA_oSYk1lKxqKqiZfgt
+    - Remote private is for private data: https://drive.google.com/drive/u/0/folders/1R2vF3ajbP50jOvIyEVwAcISdM68ZcjBJ
+    - Consider https://stackoverflow.com/a/76956283 to separate push/pull/status of the remotes
+
+
+
+- ES IST echt wichtig das nächste Mal wenn ich den Kurs halte dafür zu sorgen dass alle das notebook im browser mit den table of contents öffnen können
+- Viele kennen auch nicht .. oder ., am besten kurz intro zu shell geben
+- Studenten kannten ipython nicht, eventuell auch ipython und jupyter console erklären wenn man skripten laufen lässt<p>
+
+
+# Environments
+- Virtual envs zuerst durchnehmen! - why envs in der 1. veranstaltung bzw klonen und conda env mit allen durchgehe + Bei Intro Übersicht über die Kapitel hinzufügen (1. Block Env, Git, Folder) **was ist damit gemeint**
 - Evtl. gleich mit mamba durchstarten und nicht mit conda?
-
-- Ende with Rebase in the second lecture, continue with interactive Rebase and show how one can edit the notebook and then rebase
-- MY Arbeitsumgebung (VS CODE WSL), Anmerkungen auf READ.Md und COURSE.MD
-
-
-Aufgabe:
+- Aufgabe:
 - Erstelle Verzeichnis names my_project
 - Environment erstellen mit package pandas
 - environment.yml erstellen
 - Neue Verzeichnis my_project_clone
 - Installiere dort environment
+- Immer mamba benutzen wenn mamba env create/update benutzt wird. Ansonsten conda (ggf. geht auch mamba, aber nicht immer)
+
+Setup gitlab projects: protect main and MRs for course and playground
+
+# Projects
+- Sachen rausschmeißen die ich nicht brauch
+  - 0.1: Audio matching kürzen
+  - clustered_answers_1st_quizzie nicht mit den studenten besprechen (nur für mich)
+  - 1.0:
+
+lecture_notes/version_control_and_project_management
+# Version Control
+- 1.0
+  - Wieso Git Git heißt weglassen
+  - Git-LFS weglassen, nur sagen dass wir es nich nutzen weil es mitm remote storage schwierig wird?
+
+
+lecture_notes/code
+# Setup Python project
+
+
+- Rename lecture_notes/introduction into lecture_notes/data_and_projects?
+- In der Vorlesung sollen die Studenten die Aufgaben auch schon machen (d.h., bei Git dann gemeinsam rebasen und nicht erst in der Übung)
+
+- Ende with Rebase in the second lecture, continue with interactive Rebase and show how one can edit the notebook and then rebase
 
 
 
@@ -56,19 +115,17 @@ to code_structure?
 - package downgrade so dass nicht read and load schon da sind? -> nicht unbedingt nötig
 
 
-- ES IST echt wichtig das nächste Mal wenn ich den Kurs halte dafür zu sorgen dass alle das notebook im browser mit den table of contents öffnen können
-- Viele kennen auch nicht .. oder ., am besten kurz intro zu shell geben
+
 
 Bei der Verteilung der Projektgruppen auch nach einer Selbsteinschätzung fragen damit die Gruppen ausgeglichen sind
 
 
-- In jedes Notebook einen code reference machen mit den
-commands die man in diesem Kapitel gelernt hat,
+- In jedes Notebook einen code reference machen mit den commands die man in diesem Kapitel gelernt hat,
 das ist gut damit die Studenten sich zurecht finden
 - Note: if your script does not run you can use python3 -m pdb [<script>] to debug the script or use vscode
     - https://www.codementor.io/@stevek/advanced-python-debugging-with-pdb-g56gvmpfa
     -  In Jupyter notebooks you can use the magic command %debug
--studenten kannten ipython nicht, eventuell auch ipython und jupyter console erklären wenn man skripten laufen lässt<p>
+
 
 
 presentation:

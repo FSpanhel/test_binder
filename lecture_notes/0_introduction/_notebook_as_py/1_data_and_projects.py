@@ -6,9 +6,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.14.0
+#       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_2022] *
+#     display_name: Python [conda env:dsc_2022]
 #     language: python
 #     name: conda-env-dsc_2022-py
 # ---
@@ -260,10 +260,9 @@ embed_website("https://www.agf.de/en/data/tv-data", width=1600, height=700)
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Database
 #
-# - The data is stored in an **sqlite database** which can be downloaded [here](https://syncandshare.lrz.de/getlink/fiVWchss6RorJVL3LDR47D/dsc.db).
-# - I recommend to store the database in /data/dsc.db.
+# - The data is stored in an **sqlite database** and located in `data/dsc.db`, assuming you have pulled the data with DVC as explained in [section 11.3 of lectures_notes/0_introduction/0_intro.ipynb](0_intro.ipynb#Getting-data-that-is-not-versioned-by-Git) 
 # - The database will be **updated** with more data from time to time (!).
-# - The data can be accessed using the [command-line shell](https://www.sqlite.org/cli.html), an sql client software, or a python interface (sqlite3, sqlalchemy, pandas...).
+# - The data can be accessed using the [command-line shell](https://www.sqlite.org/cli.html), an sql client software, or a Python interface (sqlite3, sqlalchemy, pandas...).
 #
 # For now, let's use an **sql client software**.
 
@@ -273,11 +272,11 @@ embed_website("https://www.agf.de/en/data/tv-data", width=1600, height=700)
 # %% [markdown] slideshow={"slide_type": "-"}
 # **DBeaver** is a multi-platform database tool for all people who need to work with databases.
 #
-# The free **community edition** (CE) of DBeaver is an open source software and supports all common SQL Databases (https://dbeaver.io/).
+# The free [**community edition** (CE)](https://dbeaver.io/) of DBeaver is an open source software and supports all common SQL Databases.
 #
-# A closed-source **enterprise edition** of DBeaver is distributed under a commercial license has support of NoSQL databases and cloud (https://dbeaver.com/edition/).
+# A closed-source [**enterprise edition**](https://dbeaver.com/edition/) of DBeaver is distributed under a commercial license has support of NoSQL databases and cloud.
 #
-# Comparison of DBeaver Community 22.2.0 vs. DBeaver PRO 22.1: https://dbeaver.com/edition/.
+# [Comparison of DBeaver Community 22.2.0 vs. DBeaver PRO 22.1](https://dbeaver.com/edition/).
 #
 # Some **useful features**:
 # - SQL queries execution
@@ -285,10 +284,7 @@ embed_website("https://www.agf.de/en/data/tv-data", width=1600, height=700)
 # - Syntax highlighting and SQL auto-completion
 # - Database structure (metadata) browse and edit
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# **Please install the DBeaver community version**
-
-# %% hide_input=false slideshow={"slide_type": "-"}
+# %% hide_input=false slideshow={"slide_type": "subslide"}
 embed_website("https://dbeaver.io/", width=1600, height=700)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -419,13 +415,12 @@ embed_website("https://dbeaver.io/", width=1600, height=700)
 #     - Learn how to deal with seasonal patterns
 #     - Learn how to set up cross validation if the data has a temporal dimension
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "skip"}
+# <!-- 
 # ## Project 3: Forecasting the usage time of licenses
-
-# %% [markdown] cell_style="center" hide_input=true slideshow={"slide_type": "-"}
+#
 # <img src="./figures/1_project_3.png" alt="Project 3" width=1700 height=800/>
-
-# %% [markdown] cell_style="center" slideshow={"slide_type": "slide"}
+#
 # <div align="left" style="font-weight:bold;">
 # Project 3: Forecasting the usage time of licenses
 # <div/>
@@ -441,7 +436,7 @@ embed_website("https://dbeaver.io/", width=1600, height=700)
 #     - Learn how to set up cross validation if the data is no completely observable
 #     - Learn how to impose further assumptions that might be required to model the data
 #     - Learn how to justify your assumptions
-#     
+# -->
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Remarks on the project work
