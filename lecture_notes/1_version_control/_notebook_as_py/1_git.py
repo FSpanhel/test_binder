@@ -361,7 +361,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 #     - What is done in the commit.
 #     - Why it is done.
 #     - Why you chose this way and no other.  
-# - If possible, **refer to a pull/merge request, issue, or comment** that explains the commit in more detail.
+# - If possible, **refer to a pull/merge request, issue, or comment** that explains the commit in more detail and where, e.g., figures can be included.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # - An example:
@@ -426,10 +426,8 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - In this case, you can use an interactive rebase to edit your commit history afterwards to make the commits atomic.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### Exercise: Make atomic commits [#TODO]
-# - In your personal folder that you have created in [#TODO insert link]
-# - Add two files named blabla that has the content blabla.
-# - The README.md should contain section #files that gives a description of these files.
+# ### Exercise: Make atomic commits
+# - Complete Exercise 2.1 in [lectures_notes/2_version_control/3_exercise.ipynb](3_exercise.ipynb).
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Rebase the commits of your feature branch
@@ -686,7 +684,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # #### Exercise: Integrating commits from one branch into another branch
-# - Complete Exercise 2.1 and Exercise 2.2 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
+# - Complete Exercise 2.2 and Exercise 2.3 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Interactive rebase
@@ -833,7 +831,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # #### Exercise: Perform interactive rebasing
-# - Complete Exercise 2.3 and Exercise 2.4 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
+# - Complete Exercise 2.4 and Exercise 2.5 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Concluding remarks and what commits not to rebase
@@ -897,6 +895,9 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # See also https://www.atlassian.com/git/tutorials/merging-vs-rebasing#conceptual-overview
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# **Checking out a new local branch**
+# - `git checkout -b feature-branch`
+#
 # **Checking out new branch that tracks a remote branch `feature-branch`**
 # - `git fetch && git checkout feature-branch`
 #
