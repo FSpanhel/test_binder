@@ -147,9 +147,8 @@ embed_website("https://docs.gitlab.com/ee/user/project/issue_board.html")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Exercise: Work on your MR
-# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `[name]: First task`, where [name] is your full name, e.g., "Fabian Spanhel".
-# - Address the points 4 to 11.
-# - Please check off an item if you have completed it.
+# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `[name]: First task`, where [name] is your full name.
+# - Address the points 4 to 12.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## [Discussing and reviewing](https://gitlab.lrz.de/help/user/project/merge_requests/reviews/index.md#checkout-merge-requests-locally-through-the-head-ref)
@@ -180,8 +179,8 @@ embed_website("https://docs.gitlab.com/ee/user/project/issue_board.html")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Exercise: Discussion and reviewing of the MR
-# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `[name]: First task`, where [name] is your full name, e.g., "Fabian Spanhel".
-# - Address the points 12 to 15.
+# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `[name]: First task`, where [name] is your full name.
+# - Address the points 13 to 16.
 # - Please check off an item if you have completed it.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -200,7 +199,7 @@ embed_website("https://docs.gitlab.com/ee/user/project/issue_board.html")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Exercise: Merge the MR
-# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `First task of [insert name]`, e.g., `First task of Fabian Spanhel`.
+# - Consider the issue in the [playground](https://gitlab.lrz.de/dsc/2023/playground/-/issues/1) with the title `[name]: First task`, where [name] is your full name.
 # - Address the remaining points.
 # - Please check off an item if you have completed it.
 
