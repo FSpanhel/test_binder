@@ -23,6 +23,7 @@ from dsc.notebook import embed_website
 #     - Linters
 #     - Formatters
 #     - Type hints
+#     - Code reviews
 #     - Git hooks
 #     - Documentation
 
@@ -276,6 +277,19 @@ embed_website("https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html")
 # - Add type hints for all functions of your pyscaffold_test package.
 # - Open the modules of your pyscaffold_test package and check whether mypy finds any issues. 
 # - Correct any issues.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# # Code reviews
+# - During a merge or pull request you can review the code of a branch.
+# - [Google's best practicses for good reviews](https://github.com/google/eng-practices/blob/master/review/index.md)
+#     - Design: Is the code well-designed and appropriate for your system?
+#     - Functionality: Does the code behave as the author likely intended? Is the way the code behaves good for its users?
+#     - Complexity: Could the code be made simpler? Would another developer be able to easily understand and use this code when they come across it in the future?
+#     - Tests: Does the code have correct and well-designed automated tests?
+#     - Naming: Did the developer choose clear names for variables, classes, methods, etc.?
+#     - Comments: Are the comments clear and useful?
+#     - Style: Does the code follow our style guides?
+#     - Documentation: Did the developer also update relevant documentation?
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Git hooks and Pre-commit

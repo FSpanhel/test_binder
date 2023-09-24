@@ -39,16 +39,21 @@ from dsc.notebook import embed_website
 #     - Adding and committing changes to Git
 #     - Working with remotes, e.g., the difference between fetch and pull
 #     - Working with branches, e.g., checkout branches and merging
-# - If you lack some knowledge or want to deepen you knowledge please have a look at the [Resources](#Resources)
+# - If you lack some knowledge or want to deepen you knowledge please have a look at the [resources](#Resources)
 # - This chapter starts with **minor notes on Git that might be helpful**.
-# - The focus of this chapter is on **Git rebase** to obtain a concise commit history.
-#     - A concise commit history is helpful if you work collaboratively.
-#     - It will also make it easier for meto track and review your progress on the project work.
+# - We then discuss how to make **good commits**
+#     - How to write good commit messages.
+#     - How to do atomic commits.
+#     - How to rebase your commits to integrate changes of another branch.
+#     - How to use an interactive rebase to obtain a concise commit history.
+# - Finally, we consider Git workflows and how to version Jupyter notebooks.
+# - If you want to know how to use a Git management application with Git please have a look at [lecture_notes/1_collaboration_and_project_management/1_collaboration_and_project_management.ipynb](../1_collaboration_and_project_management/1_collaboration_and_project_management.ipynb)
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] slideshow={"slide_type": "skip"}
+# <!--
+#
 # ## How did Git get its name?
-
-# %% [markdown] slideshow={"slide_type": "-"}
+#
 # Source: https://initialcommit.com/blog/How-Did-Git-Get-Its-Name
 #
 #
@@ -75,10 +80,11 @@ from dsc.notebook import embed_website
 # doesn't do a whole lot, but what it _does_ do is track directory
 # contents efficiently.
 # ```
-
-# %% [markdown] slideshow={"slide_type": "subslide"}
+#
 # - First commit of Git: https://bitbucket.org/jacobstopak/baby-git/src/master/
 # - Written in the C programming language and consists of about 1,000 lines of code and a total of 7 commands
+#
+# -->
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Master vs. main
@@ -137,7 +143,7 @@ from dsc.notebook import embed_website
 # %% [markdown] slideshow={"slide_type": "subslide"}
 #     
 # **GitLens** (by GitKraken)
-# - GitLens is with over 17 millions installs (September 2022) the de facto standard extension for working with Git in VS Code. 
+# - GitLens is with over 17 millions installs (September 2022) and the most popular extension for working with Git in VS Code. 
 #     - Revision navigation
 #     - Current line blame
 #     - Side Bar views
@@ -151,12 +157,45 @@ from dsc.notebook import embed_website
 # **GitGraph**
 # - GitGraph (over 3 millions installs September 2022) provides a commit graph of your repository, and easily performs Git actions from the graph. 
 # - It is very useful if you don't have the GitLens +.
-# - Note that you often have to manually refresh GitGraph so that the correct graph is shown (!).
+# - Note that, especially if you rebase you may have to manually refresh GitGraph so that the correct graph is shown (!).
 # - [Download extension](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 #
 # **GItHistory**
 # - An alternative to GitLens with less features.
 # - [Download extension](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+
+# %%
+### Git
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Le-git
+# [Le-git](https://frostming.github.io/legit/) is a complementary command-line interface for Git.
+# It simplifies the use of Git for newcomers by making certain assumptions about the Git workflow.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Python APIs
+# - [GitPython](https://gitpython.readthedocs.io/en/stable/tutorial.html) enables you to use Python to interact with Git repositories.
+# - [Python-GitLab](https://github.com/python-gitlab/python-gitlab) is python wrapper for the GitLab API.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Git filter-repo
+# - [git filter-repo](https://github.com/newren/git-filter-repo) rewrites Git history and filters repository content.
+# - It is primarily used for creating smaller or more focused repositories from larger ones.
+# - For instance, assume your repo structure looks like
+#     ```bash
+#     src/package
+#        foo.py
+#     other/
+#        config.yaml
+#    ```
+# - Using git filter-repo you can filter the repo as follows
+#     ```bash
+#    foo.py
+#     ```
+# - In this new repo structure, the commit history is adjusted accordingly
+#     - Commits that are not related to `foo.py` are discarded and commits that involve `foo.py` and other files are adjusted
+# - More examples are available in the examples section of the [documentation](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html).
+#
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## How to change the default editor
@@ -241,6 +280,29 @@ from dsc.notebook import embed_website
 # ```
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# ## Why use branches?
+# - In short, branches in Git provide a powerful mechanism for managing and organizing your codebase, enabling efficient collaboration and development while maintaining version control.
+#     - Isolation: A particular feature can be developed without affecting the main codebase.
+#         - Organization: Branches can help you to structure your development tasks. 
+#         - Rewriting: Interactive rebases are simpler and safer to perform.
+#         - Experimentation: You can create branches to experiment with new ideas or test changes without affecting the main code. If the experiment fails, you can simply discard the branch.
+#     - Parallelization: Multiple team members can work on different branches simultaneously.
+#     - Collaboration: Pull and merge requests are possible to initiate discussions and code reviews before new code is integrating into the main codebase.
+#
+#
+# - Note that you can always make a backup of the currently checked out branch by executing the command `git branch [name of the backup]`
+#     - This is particulary useful if you want to perform an interactive rebase of a branch
+
+# %% [markdown] slideshow={"slide_type": "skip"}
+# <!--
+# ## Naming branches
+# - Use [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case) for formatting branch names.
+# - You can also use forward slashes to express hierarchies, e.g., `milestone-1/6-feature-branch`.
+# - If the branch name does not start with a corresponding issue of a Git management application, use a descriptive name for the branch.
+#     - Click [here](https://stackoverflow.com/a/11886179) if you want to want to add a describtion to a local branch. However, referring to issues is a better way.
+# -->
+
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ## Resources
 # - [One of best introductions to using Git by Atlassian](https://www.atlassian.com/git/tutorials/what-is-version-control)
 # - [Official website](https://git-scm.com/about)
@@ -255,7 +317,122 @@ from dsc.notebook import embed_website
 embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Rebase
+# # Making good commits
+# - You don't need to care about the content of your commits and their messages if you 
+#     - Never look back.
+#     - Don't use ```git log```.
+#     - Don't collaborate.
+# - However, if you are interested in why something happened and want to maintain a project over a long period of time, you should definitely try to
+#     - Write [good commit messages]((https://cbea.ms/git-commit/).
+#     - Make [atomic commits](https://www.freshconsulting.com/insights/blog/atomic-commits/).
+#     - Rebase to tidy up your commit history.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Writing commit messages
+
+# %% [markdown] slideshow={"slide_type": "-"}
+# - Recall that using Git alone does not result in good version control...
+# <div align="left">
+# <img src="./figures/vc_intro_commitstrip.png" alt="VC" width=700/>
+# <div/>
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# - Like naming variables, writing good commit messages is hard and often neglected. 
+# - [How to Write a Git Commit Message](https://cbea.ms/git-commit/): "A well-crafted Git commit message is the best way to communicate context about a change to fellow developers (and indeed to their future selves). A diff will tell you what changed, but only the commit message can properly tell you why."
+# - [Peter Hutterer](http://who-t.blogspot.com/2009/12/on-commit-messages.html): "A commit message shows whether a developer is a good collaborator".
+# - Writing descriptive commit messages is crucial for code reviews and future development.
+# - There are two popular style guidelines for writing good Git commit messages.
+#     - ["7 rules of commit messages"](https://cbea.ms/git-commit/)
+#     - [Convential commits](https://www.conventionalcommits.org/en/v1.0.0/) which are useful for developing software and [semantic versioning](https://semver.org/). See [here](https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08) and [here](https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/) for more information.
+# - Both styles are almost identical except for the subject line.
+# - https://confluence.atlassian.com/fisheye/using-smart-commits-960155400.html
+# - We will consider the "standard" style in this course.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# - According to the ["7 rules of commit messages"](https://cbea.ms/git-commit/) you should consider the following points when writing a commit message.
+# - Separate the subject from the (optional) body with a blank line
+# - The subject line should be
+#     - Capitalized
+#     - Limited to 50 characters (72 is the hard limit)
+#     - Not be ended with a period
+#     - Written in the imperative (which is Git's convention, e.g., ```Merge branch x into y```)
+# - Wrap the body at 72 characters
+# - If required, use the body to explain
+#     - What is done in the commit.
+#     - Why it is done.
+#     - Why you chose this way and no other.  
+# - If possible, **refer to a pull/merge request, issue, or comment** that explains the commit in more detail.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# - An example:
+#     
+# ```
+# Add load and store functions to the data module
+#
+# If we modularize the notebook into scripts, we need functions that
+# store and load processed data.
+# The pyscaffold_test.data module has been extended by these functions
+# so that
+# - scripts/fit.py stores the data that it processes.
+# - scripts/predict.py loads the processed data.
+#
+# Resolves: #4
+# ```
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# - When writing commit messages with a body, you should use ```git commit``` to open the text editor and not ```git commit -m```
+# - The subject line of a commit is displayed in GitHub/GitLab or if you use ```git log --oneline```
+# - There are also some [VsCode extensions](https://zhauniarovich.com/post/2020/2020-03-using-vscode-as-git-editor/) that help to format a commit message.
+# - To assign a commit to an author it is important that you configure Git in your project repo to use 
+#     - As ```user.email``` your @hm.edu eMail.
+#     - As ```user.name``` your first name followed by your last name, e.g, Fabian Spanhel. 
+#     - The `user.name` should be identical to your profile name on GitLab.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## The initial commit
+# - The initial commit should contain now files or only generic project files like a `README.md` or a `.gitignore` file.
+# - Personally, I like to make an empty initial commit using `git commit --allow-empty`since this makes it easier to rewrite the history
+# - The commit message for the initial commit should be "Initial commit"
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Doing [atomic commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/) 
+#
+# - Avoid being lazy and making a single comprehensive commit for all your day's work or completing your entire project in one go before committing.
+# - Instead, make atomic commits.
+# - **Atomic commits are tiny, focused commits. Each should achieve a single, simple task, regardless of the edited code's size, which can be described in one short sentence**.
+# - That is,
+#     - Keep commits as small as possible, with each commit dedicated to a single, straightforward task that can be explained in a concise sentence.
+#     - The size of the code change is irrelevant. Whether it's a minor edit or a substantial modification spanning thousands of lines, it should be summarizable in a brief sentence.
+#     - Don't base commit scope on individual files. It's both possible and frequently beneficial to commit multiple files together in Git.
+#     - If possible, a commit should leave the code in a workable state.
+#    
+# - As a result, the Git commit history becomes cleaner and so easier to understand and to revert.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# While the idea of atomic commits may sound obvious, applying them requires practicing and consistent application.
+
+# %% [markdown] slideshow={"slide_type": "-"}
+# How can I make atomic commits in practice?
+# - When working with Git, do not start by making some code changes and then think about what should be committed to Git.
+# - Instead, begin with thinking about the atomic commits you want do and then edit the code correspondigly.
+# <!-- - Each commit achieves a single task that can be described in one short sentence.-->
+# - Ideally, you start your work by opening a text file in which you write the subject lines of the messages for the commits you want to perform.
+# - When you edit the code for the next commit you can add more information below the corresponding subject line which will later become the body of the commit message.
+# - You can then use this text file to write the next commit message.
+
+# %% [markdown] slideshow={"slide_type": "-"}
+# It may not always be possible to make atomic commits in the first try.
+# - For instance, one makes one commit to add the `environment.yml` file and only later finds out that an additional package is required.
+# - In this case, you can use an interactive rebase to edit your commit history afterwards to make the commits atomic.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Exercise: Make atomic commits [#TODO]
+# - In your personal folder that you have created in [#TODO insert link]
+# - Add two files named blabla that has the content blabla.
+# - The README.md should contain section #files that gives a description of these files.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Rebase the commits of your feature branch
 # - With rebase you can **use another branch or commit as the new base** for your work.
 # - Like merge it **integrate changes from one branch into another branch** - just in a very different way
 # - In combination with fast-forward merges, this 
@@ -263,12 +440,12 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 #     - Eliminates the possibly superfluous 3-way merge commit (depends on the use case and preferences)
 #     - Makes it easier to navigate your project with commands like git log or git bisect.
 # - If used **interactively**, rebase allows you to **rewrite history and tidy up commits** before integrating them in another branch.
-# - Both points together help to **obtain a concise commit history** for your project. 
+# - A concise commit history is helpful for understanding and reviewing changes.
 # - However, you should rebase only on your own private branch but not on public branches, see the [golden rule of rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing).
 # - To illustrate the use of rebase, let's consider a motivating example.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Motivation
+# ### Motivation
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # Assume your main branch is '_target' and contains the main application for your very secret project.
@@ -339,7 +516,6 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # git branch -d _messy_branch;
 # ```
 #
-# <br>
 #
 # Note:  
 # - You can reproduce these commits by running
@@ -419,7 +595,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Fast-forward and three-way merge
+# ### Fast-forward and three-way merge
 # - With Git rebase you can rewrite the commit history into a linear commit history by allowing for fast-forward merges.
 # - To understand this, let's first discuss the two different merge types in Git.
 
@@ -445,7 +621,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # Figure source: https://www.atlassian.com/git/tutorials/using-branches/git-merge
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## (Non-interactive) rebase
+# ### (Non-interactive) rebase
 # - With rebase you can use another branch as the new base for your work.
 # - By rebasing on another branch, you are effectively copying all commits that have taken place on the other branch to your recent branch to create a linear commit history 
 # - Because of a linear commit history you can merge your recent branch into the other branch using a fast-forward merge
@@ -459,7 +635,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### Illustration
+# #### Illustration
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # Let's return to our motivation and to the commit when main.py is updated.
@@ -509,7 +685,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - To get a concise commit history we can use interactive rebasing which we will discuss next.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Interactive rebase
+# #### Exercise: Integrating commits from one branch into another branch
+# - Complete Exercise 2.1 and Exercise 2.2 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Interactive rebase
 # - An interactive rebase allows you to **rewrite history**. 
 # - This allows you to make commits without worrying whether they meanigful enough, you can fix them later with rebase.
 # - The only thing other developers will see is your finished commit history, which should be a concise and simple branch history.
@@ -545,7 +725,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 #     
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### Illustration
+# #### Illustration
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # Let's return to our motivation and to the commit when main.py is updated.
@@ -652,7 +832,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Concluding remarks and what commits not to rebase
+# #### Exercise: Perform interactive rebasing
+# - Complete Exercise 2.3 and Exercise 2.4 of [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ### Concluding remarks and what commits not to rebase
 # - (Interactive) rebasing helps to **obtain a concise and linear commit history** for your project. 
 # - Especially if you want to integrate updates from another branch into you private branch, rebase allows you to avoid 3-way merges.
 # - Many developers like to use fast-forward merges (facilitated through rebasing) for small features or bug fixes, while reserving 3-way merges for the integration of longer-running features.
@@ -713,8 +897,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # See also https://www.atlassian.com/git/tutorials/merging-vs-rebasing#conceptual-overview
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# **Checking out new branch that tracks a remote branch `feature-branch`**
+# - `git fetch && git checkout feature-branch`
+#
 # **Integrating data from a remote into a local branch**
-# - Optional, but useful: fetch data from the remote and have a look at its commits using git log origin/branch_name
+# - Optional, but useful: fetch data from the remote and have a look at its commits using `git log origin/branch_name`
 #     - Instead of ```git pull origin <source branch>``` you can then use ```git merge origin/branch_name```
 #     - Instead of ```git pull --rebase origin <source branch>``` you can then use ```git rebase origin/branch_name```
 # - Merge data into you local branch using ```git pull origin <source branch>```, you can use the same options here as for merge
@@ -727,11 +914,78 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - Push to the remote
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# # Git (branching) workflows
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# - Git does not dictate how to interact with it but offers a high degree of freedom in how it can be used.
+# - If your team has no convention how to work with Git, working with Git may be more cumbersome than it should be.
+# - A Git workflow is a guideline how to use Git consistently and efficiently.
+# - In particular, it often provides guidance for managing, creating, and combining branches.
+# - There is no workflow that works best for all teams and projects.
+# - As a result, may workflows have been proposed.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## [Archetypical flows](https://www.atlassian.com/git/tutorials/comparing-workflows)
+# - [Centralized workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#centralized-workflow)
+#     - One central remote repo.
+#     - There are not branches and everybody pushes to the main branch.
+# - [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow): (read this at least once!)
+#     - Uses one central remote repo and multiple branches.
+#     - The main branch is the official project history in which all relevent changes eventually get merged into and which should never contain broken code. 
+# <!-- This is the project repository at GitHub, GitLab, ... -->
+#     - The development of each feature should be encapsulated in a corresponding feature branch that is branched off from the main branch.
+#     - Feature branchs are developed locally and pushed to the corresponding feature branch of the remote repo.
+#     - A pull/merge request is then submitted to integrate the feature branch into the main branch.e main branch.
+# - [Forking workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
+#     - Each developer has its own remote repo. 
+#     - Often used for open-source projects. 
+#     - A developer forks the official remote repo of the project maintainer, i.e., (s)he, or a Git hosting service, creates a own copy of the remote repo on a remote, and pushes changes to his/her private remote repo. 
+#     - Pull/merge requests are used to integrate changes from a forked repo into the official remote repo.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## [Concrete flows](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy)
+# - [Git flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow): Sophisticated feature branch workflow. 
+#     - The first popular workflow. 
+#     - Assigns specific roles to different branches and how and when they should interact. 
+#     - May result in merge hell. 
+#     - Click [here](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and [here](https://www.youtube.com/watch?v=_w6TwnLCFwA) for more information.
+# - [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow): Proposes to fork a repo before working on it with the feature branch workflow. 
+# - [Atlassian flow](https://www.atlassian.com/blog/git/simple-git-workflow-is-simple): Like GitHub flow but rebases feature branches before merging so that the actual merge commit is just a marker for the feature branch and does not include any changed files.
+# - [GitLab flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html#mergepull-requests-with-gitlab-flow): Click [here](https://www.youtube.com/watch?v=InKNIvky2KE&feature=youtu.be) for a video.
+# - [Trunk-based flow](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development). Feature branch workflow with very short-lived branches that are integrated into the main branch potentially several times a day. 
+#     - Common practice among DevOps teams who use [CI/CD](https://www.atlassian.com/continuous-delivery).
+#     - Click [here](https://cloud.google.com/architecture/devops/devops-tech-trunk-based-development) for more information.
+# -  Click [here](https://docs.gitlab.com/ee/topics/gitlab_flow.html) and  [here](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy) for a comparions of some flows.
+#
+
+# %% [markdown]
+# ## Git flow
+# - Uses two main branches to record the history of the project
+#     - The branch `main` is the official release history and contains the production-ready code.
+#     - The `dev` branch contains additional development changes for the next release.
+# - The other branches have a limited life time, since they will be merged into `main` and `dev` and removed eventually and are categorized as
+#     - Feature branches: Branches off from and is integrated back into `dev`.
+#     - Release branches: Branches off from `dev`, is integrated back into `main`.
+#     - Hotfix branches: Branches off from `main`, is integrated back into `main` and `dev`.
+# - Note:
+#     - If `dev`is considered to be the main branch, then the feature branch workflow is used for `dev` and the feature branches.
+#     - If something is merged into `main` it must also be merged into `dev. 
+# - See [here](https://nvie.com/posts/a-successful-git-branching-model) and [here](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for more details.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# Source: http://nvie.com/posts/a-succesful-git-branching-model
+# <div>
+# <img src="./figures/gitflow.png" alt="Git flow" width=700/>
+# <div/>
+
+# %%
+
+# %% [markdown] slideshow={"slide_type": "slide"}
 # # Versioning Jupyter notebooks
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
 # - Notebooks are .json files which contain metadata, input and output of cells
-# - For instance, the first 31 lines of lecture_notes/1_version_control/intro.ipynb are given by
+# - For instance, the first 31 lines of lecture_notes/1_version_control/0_intro.ipynb are given by
 
 # %% slideshow={"slide_type": "fragment"}
 !cat 0_intro.ipynb | head -n 31
@@ -846,10 +1100,5 @@ for file in ['1_git_light.ipynb', '1_git_light.py', '1_git_percent.ipynb', '1_gi
 # ``` 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Topics that we will discuss when talking about collaboration and project management
-# - Writing good commit messages
-# - Working with Git providers like GitHub or GitLab
-#     - Working with pull/merge requests
-#     - Working with issues and how to automatically close them wit a commit message and push
-#     - [Issue board](https://docs.gitlab.com/ee/user/project/issue_board.html)
-# - Git branch workflows 
+# ## Exercise
+# - Complete Exercise 3 [lecture_notes/1_version_control/3_exercise.ipynb](3_exercise.ipynb).

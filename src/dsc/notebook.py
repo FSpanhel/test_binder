@@ -94,6 +94,9 @@ if __name__ == "__main__":
 
     logger.info(f"Setting JUPYTER_CONFIG_DIR={config_dir}")
 
+    # If the OS is unix-based, we could also use
+    # https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html#macos-and-linux  # noqa
+    # for the next step
     run_cmd(f"conda env config vars set -n dsc JUPYTER_CONFIG_DIR={config_dir}")
 
     # Need to reactivate the environment
