@@ -1,3 +1,31 @@
+- [x] lecture_notes/1_version_control/exercise_solution.ipynb -> should the students make a merge request? the should add their initial at the beginning of an issue? and do everything in their name folder? -> For now, let's only do this for the first exercise because it gets too annoying if I do this for each exercise. But maybe for 2.4./ 2.5 it makes sense?
+- [x] build lecture_notes/1_version_control/exercise_3.ipynb
+
+
+
+- [x] finish ecture_notes/1_version_control/1_git.ipynb
+  - [x] Atomit commit exercise
+  - [x] Branches
+  - [x] Other stuff in Word Doc
+- [ ] Update commit_to_hm_branch.py
+- [x] Push first initial commit to course and playground
+  - [x] Set up GitLab repos
+    - [x] Main protected, only I can push
+
+
+- [x] first_task.md should become 1_exercise.ipynb
+- [x] build pdoc -> run this later on the branch that is pushed for the students
+- [ ] Try software install with Isabella  
+- [ ] Check binder
+- [ ] Presenter kaufen
+- [ ] Whiteboard + Studierende den Gruppen zuordnen
+
+- [x] rename lecture_notes/1_version_control to lecture_notes/2_version_control
+- [x] Rename lecture_notes/3_code/0_python_guidelines_and_tools.ipynb to lecture_notes/3_code/0_python_standards_and_tools.ipynb
+- [x] Put lecture_notes/4_collaboration_and_project_management to archive
+
+
+
 - [x] conda install windows, path not found
 - [x] how to activate the environment
 - [x] add style for rise
@@ -39,7 +67,7 @@ but not in environment.yml -> can not specify here
 
 
 lecture_notes/intro_and_setup
-# Einführung
+# Einführung -> branch 1-revise-intro
 - [x] Sheldon Bild raus und was ich so mache (fachlich ausbilden)
 - Update von intro.pynb
 - [x] Kurze Einführung in VS Code (install)
@@ -49,8 +77,6 @@ lecture_notes/intro_and_setup
 - [x] Notebook starten -> TOC wird nicht richtig angezeigt, Browser Problem? -> fixed
 - [x] Umstellen des Repos auf Gruppenrepo damit kein Projektlimit, siehe https://doku.lrz.de/gitlab-10332895.html#GitLab-Projektlimit
 - [ ] Evtl. sagen dass ChatGPT NLP Leute vertreibt? + Slide einfügen nach Slide 5. DS is very competitive (Bootcamps, Masters), fancy shit, viele Unternehmen sind nicht so weit, Überangebot an Leute die das wollen.
-- [ ] Setup new repos (course & playground) -> need a commit there first
-- [ ] Add pdoc -> remove from commit_to_hm_branch.py
 - [x] Add dvc for data:
   - [x] Add to environment.yml
   - [x] Add dvc remotes:
@@ -81,15 +107,16 @@ Setup gitlab projects: protect main and MRs for course and playground
 
 # Projects
 - Sachen rausschmeißen die ich nicht brauch
-  - 0.1: Audio matching kürzen
+  - [ ] 0.1: Audio matching kürzen
   - clustered_answers_1st_quizzie nicht mit den studenten besprechen (nur für mich)
   - 1.0:
 
 lecture_notes/version_control_and_project_management
-# Version Control
+# Version Control -> branch 2-revise-vc
 - 1.0
   - Wieso Git Git heißt weglassen
-  - Git-LFS weglassen, nur sagen dass wir es nich nutzen weil es mitm remote storage schwierig wird?
+  - Git-LFS in der Vorlesung überspringen, nur sagen dass wir es nich nutzen weil es mitm remote storage etc. schwierig wird
+- Explain jupytext.toml
 
 
 lecture_notes/code
@@ -100,7 +127,6 @@ lecture_notes/code
 - In der Vorlesung sollen die Studenten die Aufgaben auch schon machen (d.h., bei Git dann gemeinsam rebasen und nicht erst in der Übung)
 
 - Ende with Rebase in the second lecture, continue with interactive Rebase and show how one can edit the notebook and then rebase
-
 
 
 - pandas groupby categorical example (bad design choices)

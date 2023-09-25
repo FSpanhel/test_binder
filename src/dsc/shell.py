@@ -329,58 +329,51 @@ class TemporaryScript:
 
 
 def list_files(
-    folder,
-    exclude_folder_pattern: None | list[str] = None,
-    exclude_file_pattern: None | list[str] = None,
+    folder: str = ".",  # do not use absolute paths here
+    exclude_pattern: None | list[str] = None,
     exclude_files_unknown_to_git: bool = False,
 ) -> list[str]:
     """
     Folder in exclude must start with "./"
     """
-    if exclude_folder_pattern is None:
-        exclude_folder_pattern = []
-    if exclude_file_pattern is None:
-        exclude_file_pattern = []
+    if exclude_pattern is None:
+        exclude_pattern = []
 
     if exclude_files_unknown_to_git:
         files_known_to_git = run_cmd("git ls-files")
     else:
         files_known_to_git = []
 
-    def _exclude(folder, exclude_folder_pattern):
-        for pattern in exclude_folder_pattern:
+    def _exclude(folder, exclude_pattern):
+        # TODO: Instead of a loop could use | to combine exclude patterns
+        for pattern in exclude_pattern:
             if re.search(pattern, folder):
                 return True
             else:
                 continue
+        return False
 
     result = []
 
     for root, _, files in os.walk(folder):
-        root = root[2:]  # Remove "./" at the start
-        if root.startswith("data"):
-            pass
-            # import pdb; pdb.set_trace()
-        if _exclude(root, exclude_folder_pattern):
+        root = root[2:]
+        # print(root)
+        # print(files)
+        # Not necessary, but if this is True then we don't have to iterate over files
+        if _exclude(root, exclude_pattern):
             continue
         else:
             for file in files:
-                if _exclude(file, exclude_file_pattern):
+                # if file == "data.py":
+                #     import pdb; pdb.set_trace()
+                file_path = os.path.join(root, file)
+                # if file_path == 'src/dsc/notebook.py':
+                #   import pdb; pdb.set_trace()
+                if _exclude(file_path, exclude_pattern):
                     continue
-                else:
-                    file_path = os.path.join(root, file)
+                if exclude_files_unknown_to_git:
                     if file_path not in files_known_to_git:
-                        pass
-                    else:
-                        result.append(file_path)
+                        continue
+                print(file_path)
+                result.append(file_path)
     return result
-
-
-def checkout_branch_on_the_basis_of_the_initial_commit(
-    target_branch: str, exists: bool = True
-) -> str:
-    hash_of_initial_commit = run_cmd("git rev-list --max-parents=0 HEAD")[0]
-    if not exists:
-        return f"git checkout -b {target_branch} {hash_of_initial_commit}"
-    else:
-        return f"git checkout {target_branch}"
