@@ -3,7 +3,7 @@ Contains utility functions that are used for all lectures
 like embeding webpages into a Jupyter notebook.
 If run as a script, the
 [nb extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions)
-are configured according to ".jupyter/nbconfig". In particular, since the sidebar of
+are configured according to `.jupyter/nbconfig`. In particular, since the sidebar of
 toc2 does not work anymore in recent versions, it is disabled and the floating
 toc window is used to imitate it.
 """  # noqa
@@ -19,16 +19,17 @@ from dsc.shell import RunCMDError, run_cmd
 markdown = False
 """The default value of *markdown* for `embed_website`."""
 default_folder = "."
-"""The default folder for `git_root`."""
+"""The default value of *folder* for `git_root`."""
 
 
 def embed_website(
     url: str, width: int = 900, height: int = 500, markdown: bool = markdown
 ) -> IFrame:
     """
-    Embeds a website into a Jupyter notebook code cell.
+    Embeds a website into a Jupyter notebook code cell with given *width* and
+    *height*.
 
-    If markdown is True set the figure height to 0.
+    If *markdown* is True sets the figure height to 0.
     """
     if markdown:
         height = 0
@@ -43,7 +44,7 @@ def git_root(folder: str = default_folder) -> str:
         folder: The path of a folder of a Git repo. Defaults to `default_folder`.
 
     Raises:
-        `ds.shell.RunCMDError`: If `folder` is not within a Git repo.
+        `dsc.shell.RunCMDError`: If `folder` is not within a Git repo.
 
     Note:
         Displays the root directory of the submodule and not the parent
@@ -58,7 +59,7 @@ def git_root(folder: str = default_folder) -> str:
         from ds.shell import RunCMDError
         from ds.inspect import git_root
 
-        git_root()  # e.g., '/home/spa0001f/gitlab_p7s1/ds'
+        git_root()  # e.g., '/home/spa0001f/git_repos/teach/dsc'
 
         # Not within a Git repo (assuming /home is not a Git repo)
         try:
@@ -75,7 +76,7 @@ def git_root(folder: str = default_folder) -> str:
 
 def set_wd() -> None:
     """
-    Sets the working directory of the notebook to the root of this Git repo.
+    Sets the working directory of the notebook to the root of the Git repo.
     """
     project_root = git_root()
     if os.getcwd() != project_root:
@@ -94,6 +95,9 @@ if __name__ == "__main__":
 
     logger.info(f"Setting JUPYTER_CONFIG_DIR={config_dir}")
 
+    # If the OS is unix-based, we could also use
+    # https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html#macos-and-linux  # noqa
+    # for the next step
     run_cmd(f"conda env config vars set -n dsc JUPYTER_CONFIG_DIR={config_dir}")
 
     # Need to reactivate the environment

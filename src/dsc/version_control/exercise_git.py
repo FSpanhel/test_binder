@@ -1,9 +1,9 @@
 """
-Helper for the Git exercises in
-lecture_notes/1_version_control/3_exercise.ipynb.
+Helper script for the Git exercises in
+`lecture_notes/2_version_control/3_exercise.ipynb`.
 
 Program should be run from the root directory of the project using
-python3 -m dsc.version_control.exercise_git [<arg>],
+`python3 -m dsc.version_control.exercise_git [arg]`,
 where arg is in ['first', 'second', 'third', 'reset'].
 """
 import sys

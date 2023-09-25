@@ -7,8 +7,9 @@
     - [Submission](#submission)
     - [Grading](#grading)
   - [Presentation](#presentation)
-- [Git repo](#git-repo)
+- [Git course repo](#git-course-repo)
   - [Lecture notes](#lecture-notes)
+- [GitLab playground project](#gitlab-playground-project)
 - [Contact and office hours](#contact-and-office-hours)
 - [Prerequisites](#prerequisites)
   - [Git resources](#git-resources)
@@ -121,7 +122,7 @@ In order to be graded, you have to **submit your project code** and then **give 
 - **Each member of a group presents for about 10 minutes** and will be graded individually.
 - You must attend every presentation, not just your own.
 
-# Git repo
+# Git course repo
 Please have a look at [README.md](README.md). There you can find also information about how to setup the environment.
 ## Lecture notes
 Material for the lecture and the tutorial is provided in the folder [`lecture notes`](lecture_notes).
@@ -131,6 +132,9 @@ Material for the lecture and the tutorial is provided in the folder [`lecture no
 - Click [here](https://syncandshare.lrz.de/getlink/fiVWchss6RorJVL3LDR47D/dsc.db) to download the first version of the database that we use in this course (available until the end of this year).
 - I recommend to save the database as `data/dsc.db` in the root folder of this project.
 -->
+
+# GitLab playground project
+The GitLab project https://gitlab.lrz.de/dsc/2023/playground can be used to explore concepts related to Git remotes and GitLab.
 
 # Contact and office hours
 - Contact

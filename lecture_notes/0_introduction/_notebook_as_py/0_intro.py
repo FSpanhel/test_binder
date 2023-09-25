@@ -220,7 +220,7 @@ set_wd()
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Organization
-# ## The Git course repository
+# ## The GitLab course project
 #
 # - All materials for this course are provided by the GitLab project https://gitlab.lrz.de/dsc/2023/course.
 # - Information about the Git repo, e.g., how to clone it and setup the environment can be found in [README.md](../../README.md).
@@ -229,8 +229,8 @@ set_wd()
 #     
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## The Git playground repository
-# - This Gitlab project https://gitlab.lrz.de/dsc/2023/playground can be used to explore concepts related to Git remotes or GitLab.
+# ## The GitLab playground project
+# - The GitLab project https://gitlab.lrz.de/dsc/2023/playground can be used to explore concepts related to Git remotes and GitLab.
 # ## Contact and office hours
 # - Contact
 #     - You can always write an eMail to spanhel@hm.edu
@@ -363,14 +363,20 @@ set_wd()
 # - Note: If you want to use mamba in a different shell, e.g., `zsh`, run `mamba init [SHELL]`, where `[SHELL]` is the name of a supported shell.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Setting up the project repo
+# # Setting up the course repo
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ## Cloning the repo
+# ## Cloning the course repo
 # - To copy the remote repository to a local repository you need [Git] which should already be installed if you are using a unix-based OS. 
 # - If your OS is Windows you can use [WSL] or [Git For Windows], however it is highly recommended to use [WSL].
-# - Click [here](https://docs.gitlab.com/ee/user/ssh.html) how to use SSH keys to communicate with GitLab.
-# - To clone the repo with SSH, run the following command in the terminal.
+# - Using your shell, navigate to a suitable folder to which the repo should be cloned.
+#     - You can print the current working directory using `pwd`.
+#     - To create a folder in the current working directory, use `mkdir [folder]`, where [folder] is the name of the folder.
+#     - Use `cd [folder]` to move to a particular folder.
+#     - I recommend to navigate to your home directory using `cd ~`, create a folder using `mkdir [folder]`, e.g. `mkdir -p git_repos/study/data_science_challenge`, and then switch to this folder using `cd [folder]`
+# - To clone the repo with SSH into the current working directory
+#     - [Set up SSH keys to communicate with GitLab]((https://docs.gitlab.com/ee/user/ssh.html).
+#     - Run the following command in the terminal.
 #     ```sh
 #     git clone git@gitlab.lrz.de:dsc/2023/course.git
 #     ```
@@ -393,6 +399,7 @@ set_wd()
 #   in the terminal.
 # - Setting up the environment takes a while.
 # - After the environment has been successfully created, you can activate it using ```mamba activate dsc```.  
+# - Your prompt should then begin with the letters `(dsc)`.
 # - You should **always activate the environment** when you want to run code of this Git repo or want to use the `dsc` package.
 # - If you are using VS Code you can find [here](https://code.visualstudio.com/docs/python/environments#_work-with-python-interpreters) instructions how to automatically activate the environment when you open the `dsc` folder with VS Code.
 #
@@ -458,6 +465,22 @@ set_wd()
 #     ```
 # - Copy the link from the terminal and open it on Windows with a browser.
 # - Perform the steps mentioned on the previous slide.
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# # Setting up the playground repo
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## Cloning the playground repo
+# - Clone the playground repo into the same folder as the course repo.
+# - To clone the repo with SSH, run the following command in the terminal.
+#     ```sh
+#     git clone git@gitlab.lrz.de:dsc/2023/playground.git
+#     ```
+# - Alternatively, you can clone with HTTPS using
+#
+#     ```sh
+#     git clone https://gitlab.lrz.de/dsc/2023/playground.git
+#     ```
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Ask questions and share impressions

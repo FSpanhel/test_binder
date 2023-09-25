@@ -1,22 +1,22 @@
 """
-Provides a very basic Git API that is used in the Git chapter.
+Provides a very basic Git API that is used in `lecture_notes/2_version_control`.
 The main program can be used to reproduce the corresponding commits in
-section 2 of the Git chapter.
+`lecture_notes/2_version_control/1_git.ipynb`
 
 Usage:
-- 'python3 -m dsc.version_control.git' reproduces the commits in section 2.1
+- `python3 -m dsc.version_control.git` reproduces the commits in section 2.4
     before the _target branch is merged into _messy_branch for the first time
-- 'python3 -m dsc.version_control.git reset' undos all commits done by this program
-- 'python3 -m dsc.version_control.git cmd1 cmd2', where cmd1 and cmd2 are
+- `python3 -m dsc.version_control.git reset` undos all commits done by this program
+- `python3 -m dsc.version_control.git cmd1 cmd2`, where cmd1 and cmd2 are
     git commands that integrate one branch into another, i.e., merge or rebase
-    - 'python3 -m dsc.version_control.git merge merge'  reproduces the commits in
-        section 2.1
-    - 'python3 -m dsc.version_control.git rebase merge'  uses rebase for the first
+    - `python3 -m dsc.version_control.git merge merge`  reproduces the commits in
+        section 2.4
+    - `python3 -m dsc.version_control.git rebase merge`  uses rebase for the first
         integration
-    - 'python3 -m dsc.version_control.git rebase "merge --no-ff"'  uses rebase
+    - `python3 -m dsc.version_control.git rebase "merge --no-ff"`  uses rebase
     for the first integration and then an explicit 3-way merge
-    - 'python3 -m dsc.version_control.git "rebase -i" "merge"'
-    - 'python3 -m dsc.version_control.git "rebase -i" "merge --no-ff"'
+    - `python3 -m dsc.version_control.git "rebase -i" "merge"`
+    - `python3 -m dsc.version_control.git "rebase -i" "merge --no-ff"`
 
 Note for students:
 The Git class and the main program just get the job done and
@@ -35,6 +35,8 @@ class Git:
     """
     Provides a simple Python API for Git that is used in
     lecture_notes/1_version_control.
+
+    Note: The documentation of attributes and methods is not done yet.
     """
 
     def __init__(self):
@@ -109,7 +111,7 @@ class Git:
         return self
 
     def reset(self) -> Git:
-        """Checkout to main and delete self.branches."""
+        """Checkout to main and delete `branches`."""
         self.commands.append("git checkout main")
         branches = self._get_branches_from_file()
         for branch in branches:

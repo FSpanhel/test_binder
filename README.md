@@ -43,16 +43,14 @@ If your OS is Windows you can use [WSL] or [Git For Windows].
 - Click [here](https://code.visualstudio.com/docs/remote/remote-overview) for more information.
 
 
-To clone the repo with SSH, run the following command in the terminal.
-
-```sh
-git clone git@gitlab.lrz.de:dsc/2023/course.git
-```
-
-See https://docs.gitlab.com/ee/user/ssh.html how to use SSH keys to communicate with GitLab.
+To clone the repo with SSH into the current working directory
+- [Set up SSH keys to communicate with GitLab](https://docs.gitlab.com/ee/user/ssh.html).
+- Run the following command in the terminal.
+    ```sh
+    git clone git@gitlab.lrz.de:dsc/2023/course.git
+    ```
 
 Alternatively, you can clone with HTTPS using
-
 ```sh
 git clone https://gitlab.lrz.de/dsc/2023/course.git
 ```

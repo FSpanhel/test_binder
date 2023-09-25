@@ -1,10 +1,10 @@
 """
-Helper for the DVC exercise in
-lecture_notes/1_version_control/3_exercise.ipynb.
+Helper script for the DVC exercise in
+`lecture_notes/2_version_control/3_exercise.ipynb`.
 
-Creates the file 'movies_2018.csv' which contains
+Creates the file `movies_2018.csv` which contains
 all distinct movies titles from 2018-01-01 until
-{arg}-12-31, where arg is the first argument that
+YYYY-12-31, where YYYY a four-digit number and the first argument that
 is provided to this program when it is run.
 
 Program should be run from the root directory of
