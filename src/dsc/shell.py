@@ -333,9 +333,6 @@ def list_files(
     exclude_pattern: None | list[str] = None,
     exclude_files_unknown_to_git: bool = False,
 ) -> list[str]:
-    """
-    Folder in exclude must start with "./"
-    """
     if exclude_pattern is None:
         exclude_pattern = []
 
