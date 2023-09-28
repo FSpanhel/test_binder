@@ -5,6 +5,7 @@ import sys
 from dsc.notebook import git_root
 from dsc.shell import RunCMDError, list_files, run_cmd
 
+source_branch = "main"
 target_branch = "hm_2023_dev"
 
 log_file = os.path.join(git_root(), "_organization", f"{target_branch}.log")
@@ -142,9 +143,6 @@ class IncludeFilesForHM(IncludeFiles):
             self.exclude_pattern.extend(commit_specific[commit_number])
         else:
             raise ValueError("Key not defined")
-
-
-source_branch = "main"
 
 
 class GitSyncer:
