@@ -23,5 +23,5 @@ dvc pull
 
 *Start notebook from dsc environment and check whether it runs*
 0_introduction -> RUNS
-1_collaboration_and_project_management ->
+1_collaboration_and_project_management -> RUNS
 2_version_control ->

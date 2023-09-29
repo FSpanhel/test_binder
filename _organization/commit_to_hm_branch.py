@@ -21,7 +21,7 @@ if False:
             r"^_(?!_)",
             r"/_(?!_)",
             r"src/dsc/[a-z]",
-            r"data/(?!.+\.dvc|\.gitignore)"
+            r"data/(?!.+\.dvc|\.gitignore)",
         ],
         exclude_files_unknown_to_git=True,
     )
@@ -248,8 +248,10 @@ commit_messages = {
     # 0: # not required because the initial commit is the initial commit on main
     1: "Add general project files",
     2: "Add files for the lecture on 2023-10-06",
-    3: "Add 0_introduction/2_exercise_solution.ipynb",
+    3: "Add lecture_notes/0_introduction/2_exercise_solution.ipynb",
     4: "Add lecture_notes/1_collaboration_and_project_management",
+    5: "Add lecture_notes/2_version_control",
+    6: "Add lecture_notes/2_version_control/3_exercise_soultion.ipynb",
 }
 
 
@@ -297,5 +299,11 @@ if __name__ == "__main__":
     # This is required because otherwise it may not be possible to checkout a branch
     # Stashing might be an alternative
     assert_wd_clean()
+
+    conda_env = os.environ["CONDA_PREFIX"].rsplit("/", -1 )[-1]
+    if conda_env != "dsc_dev":
+        raise Exception(
+            "Env must be dsc_dev so that pdoc is available but is {conda_env}"
+        )
 
     create_commit(git, commit)
