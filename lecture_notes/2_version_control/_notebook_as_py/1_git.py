@@ -20,13 +20,15 @@ from dsc.notebook import embed_website
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Intro
-# <div align="left">
+
+# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
+# <div align="center">
 # <img src="https://imgs.xkcd.com/comics/git.png" alt="Git..." width=600/>
 # <div/>
-# <div align="left">
+# <div align="center">
 # <div/>
 
-# %% [markdown] slideshow={"slide_type": "slide"}
+# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
 # <div align="left">
 # <img src="./figures/git_intro.png" alt="Dropbox" width=1200/>
 # <div/>
@@ -47,7 +49,7 @@ from dsc.notebook import embed_website
 #     - How to rebase your commits to integrate changes of another branch.
 #     - How to use an interactive rebase to obtain a concise commit history.
 # - Finally, we consider Git workflows and how to version Jupyter notebooks.
-# - If you want to know how to use a Git management application with Git please have a look at [lecture_notes/1_collaboration_and_project_management/1_collaboration_and_project_management.ipynb](../1_collaboration_and_project_management/1_collaboration_and_project_management.ipynb)
+# - If you want to know how to use a Git management application with Git please have a look at [lecture_notes/1_collaboration_and_project_management/1_git_management_application.ipynb](../1_collaboration_and_project_management/1_git_management_application.ipynb)
 
 # %% [markdown] slideshow={"slide_type": "skip"}
 # <!--
@@ -94,9 +96,15 @@ from dsc.notebook import embed_website
 # - The master/slave terminology has a [long history in computing](https://en.wikipedia.org/wiki/Master/slave_(technology)), especially in reference to hardware such as disk drives. 
 # - Other version control systems such as BitKeeper, a predecessor to Git, have used this terminology.
 # - This terminology is somewhat outdated as it is associated with colonialism.
-# - Current versions of Git (>= 2.28) display the following message when you create a new repository using git init:  
-#     ```Using 'master' as the name for the initial branch. This default branch name is subject to change. To configure the initial branch name to use in all of your new repositories, which will suppress this warning, call: git config --global init.defaultBranch <name> Names commonly chosen instead of 'master' are 'main', 'trunk' and 'development'. The just-created branch can be renamed via this command: git branch -m <name>```
-# - Git maintainers are [actively working](https://lore.kernel.org/git/pull.656.v4.git.1593009996.gitgitgadget@gmail.com/) toward a permanent change for the default name from master to main
+# - Current versions of Git (>= 2.28) display the following message when you create a new repository using `git init`:  
+#     ```
+#     Using 'master' as the name for the initial branch. This default branch name is subject to change.
+#     To configure the initial branch name to use in all of your new repositories, which will suppress this warning,
+#     call: git config --global init.defaultBranch <name>
+#     Names commonly chosen instead of 'master' are 'main', 'trunk' and 'development'.
+#     The just-created branch can be renamed via this command: git branch -m <name>
+#     ```
+# - Git maintainers are [actively working](https://lore.kernel.org/git/pull.656.v4.git.1593009996.gitgitgadget@gmail.com/) toward a permanent change for the default name from master to main.
 #
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
@@ -104,14 +112,14 @@ from dsc.notebook import embed_website
 # - Starting [October 1 2020](https://github.blog/changelog/2020-10-01-the-default-branch-for-newly-created-repositories-is-now-main/), the initial branch name of **new GitHub repositories** is main.
 # - Since [May 24 2021](https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/), the initial branch the name of **new GitLab repositorries** is main.
 # - Thus, any new project that its hosted on GitHub or GitLab and expects a master branch might run into problems.
-# - Therefore, I recommend to rename the initial branch to main if you use git init and not get clone.
+# - Therefore, I recommend to rename the initial branch to main if you use `git init` and not `git clone`.
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
-# - Git 2.28, released in July 2020, added init.defaultBranch to the configuration
+# - Git 2.28, released in July 2020, added `init.defaultBranch` to the configuration
 # - This allows to name the name of the default branch other than master, e.g.,  
 #     ```git config --global init.defaultBranch main ```
 # - Alternatively, one can manually rename master each time you have initialized a repo and made the first commit using  
-# ```git branch -m main```  
+# `git branch -m main`
 # - Or just run  ```git checkout -b main``` after initializing a repo but before the first commit
 # to switch the unborn branch name to main
 # - For renaming a remote branch see [here](https://stackoverflow.com/questions/30590083/how-do-i-rename-both-a-git-local-and-remote-branch-name).
@@ -164,9 +172,6 @@ from dsc.notebook import embed_website
 # - An alternative to GitLens with less features.
 # - [Download extension](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
 
-# %%
-### Git
-
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Le-git
 # [Le-git](https://frostming.github.io/legit/) is a complementary command-line interface for Git.
@@ -218,16 +223,16 @@ from dsc.notebook import embed_website
 # - Git aliases are created through the git config command or Git configuration files.
 # - For instance, to globally create the alias git st for git status
 #     - Run ```git config --global alias.st 'status'``` in the terminal
-#     - Or edit ~/.gitconfig (on unix-like systems)
+#     - Or edit `~/.gitconfig` (on unix-like systems)
 # - You can also use shell commands in aliases using !, e.g., ```git config --global alias.list '!ls -a | head -n 4'```
-# - You can also create aliases in your favorite shell using 'alias gs='git status', however
+# - You can also create aliases in your favorite shell using `alias gs='git status'`, however
 #     - The alias is bound to the shell.
 #     - May pollute shell commands.
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # **Some useful git aliases**
 #
-# ```bash
+# ```sh
 # # show all aliases
 # git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /";
 #
@@ -262,7 +267,11 @@ from dsc.notebook import embed_website
 # git config --global alias.co checkout;
 # git config --global alias.brst "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate"; # show last commit of each branch
 # git config --global alias.brdm "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"; # delete all merged branches
-#
+# ```
+
+# %% [markdown] slideshow={"slide_type": "subslide"}
+# **Some useful git aliases cont'd**
+# ```sh
 # # merge
 # git config --global alias.mg 'merge';
 # git config --global alias.mgff 'merge --ff-only';  # abort if no fast-forward merge is possible 
@@ -282,12 +291,12 @@ from dsc.notebook import embed_website
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Why use branches?
 # - In short, branches in Git provide a powerful mechanism for managing and organizing your codebase, enabling efficient collaboration and development while maintaining version control.
-#     - Isolation: A particular feature can be developed without affecting the main codebase.
+#     - **Isolation**: A particular feature can be developed without affecting the main codebase.
 #         - Organization: Branches can help you to structure your development tasks. 
 #         - Rewriting: Interactive rebases are simpler and safer to perform.
 #         - Experimentation: You can create branches to experiment with new ideas or test changes without affecting the main code. If the experiment fails, you can simply discard the branch.
-#     - Parallelization: Multiple team members can work on different branches simultaneously.
-#     - Collaboration: Pull and merge requests are possible to initiate discussions and code reviews before new code is integrating into the main codebase.
+#     - **Parallelization**: Multiple team members can work on different branches simultaneously.
+#     - **Collaboration**: Pull and merge requests are possible to initiate discussions and code reviews before new code is integrating into the main codebase.
 #
 #
 # - Note that you can always make a backup of the currently checked out branch by executing the command `git branch [name of the backup]`
@@ -346,7 +355,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 #     - [Convential commits](https://www.conventionalcommits.org/en/v1.0.0/) which are useful for developing software and [semantic versioning](https://semver.org/). See [here](https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08) and [here](https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/) for more information.
 # - Both styles are almost identical except for the subject line.
 # - https://confluence.atlassian.com/fisheye/using-smart-commits-960155400.html
-# - We will consider the "standard" style in this course.
+# - We will consider the "7 rules of commit messages" in this course.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # - According to the ["7 rules of commit messages"](https://cbea.ms/git-commit/) you should consider the following points when writing a commit message.
@@ -381,6 +390,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # - When writing commit messages with a body, you should use ```git commit``` to open the text editor and not ```git commit -m```
+#    - The git commit message file also displays information that you should check.
 # - The subject line of a commit is displayed in GitHub/GitLab or if you use ```git log --oneline```
 # - There are also some [VsCode extensions](https://zhauniarovich.com/post/2020/2020-03-using-vscode-as-git-editor/) that help to format a commit message.
 # - To assign a commit to an author it is important that you configure Git in your project repo to use 
@@ -391,7 +401,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## The initial commit
 # - The initial commit should contain now files or only generic project files like a `README.md` or a `.gitignore` file.
-# - Personally, I like to make an empty initial commit using `git commit --allow-empty`since this makes it easier to rewrite the history
+# - Personally, I like to make an empty initial commit using `git commit --allow-empty` since this makes it easier to rewrite the history.
 # - The commit message for the initial commit should be "Initial commit"
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -411,7 +421,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # %% [markdown] slideshow={"slide_type": "slide"}
 # While the idea of atomic commits may sound obvious, applying them requires practicing and consistent application.
 
-# %% [markdown] slideshow={"slide_type": "-"}
+# %% [markdown] slideshow={"slide_type": "fragment"}
 # How can I make atomic commits in practice?
 # - When working with Git, do not start by making some code changes and then think about what should be committed to Git.
 # - Instead, begin with thinking about the atomic commits you want do and then edit the code correspondigly.
@@ -420,7 +430,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - When you edit the code for the next commit you can add more information below the corresponding subject line which will later become the body of the commit message.
 # - You can then use this text file to write the next commit message.
 
-# %% [markdown] slideshow={"slide_type": "-"}
+# %% [markdown] slideshow={"slide_type": "fragment"}
 # It may not always be possible to make atomic commits in the first try.
 # - For instance, one makes one commit to add the `environment.yml` file and only later finds out that an additional package is required.
 # - In this case, you can use an interactive rebase to edit your commit history afterwards to make the commits atomic.
@@ -444,9 +454,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ### Motivation
+#
+# DISCLAIMER: In the following motivation, Git commit messages start with a lower case letter and thus violate the ["7 rules of commit messages"](https://cbea.ms/git-commit/) &#128584;
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
-# Assume your main branch is '_target' and contains the main application for your very secret project.
+# Assume your main branch is `_target` and contains the main application for your very secret project.
 # ```bash
 # git checkout -b _target &&
 # echo "print(1)" > main.py &&
@@ -454,7 +466,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # ```
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
-# To create a module for your main program you checkout the branch '_messy_branch'.
+# To create a module for your main program you checkout the branch `_messy_branch`.
 # ```bash
 # git checkout -b _messy_branch &&
 # echo 'print("this is the frist line")' > module_a.py &&
@@ -462,7 +474,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # ```
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
-# You recognize the spelling error in module_a.py and correct it.
+# You recognize the spelling error in `module_a.py` and correct it.
 # ```bash
 # rm messy_readme.md &&
 # echo 'print("this is the first line")' > module_a.py &&
@@ -470,23 +482,23 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # ```
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
-# After some elaborate thinking you put more details to module_a.py.
+# After some elaborate thinking you put more details into `module_a.py`.
 # ```bash
 # echo 'print("this is the second line")' >> module_a.py &&
 # git add module_a.py && git commit -m "add more details to module_a.py";
 # ```
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
-# In the meantime you have to update main.py on the branch _target.
+# In the meantime you have to update `main.py` on the branch `_target`.
 # ```bash
 # echo "print(2)" >> main.py &&
 # git add main.py && git commit -m "update main.py";
 # ```
 
 # %% [markdown] slideshow={"slide_type": "-"}
-# Since the module_a.py depends on main.py you have to consider its update on '_messy_branch'.
+# Since the `module_a.py` depends on `main.py` you have to consider its update on `_messy_branch`.
 #
-# For this purpose, you merge the '_target' branch into '_messy_branch':
+# For this purpose, you merge the `_target` branch into `_messy_branch`:
 # ```bash
 # git merge _target
 # ```
@@ -502,12 +514,12 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # You edit (or don't edit) the merge message and perform the merge.   
 #
-# You finish module_a.py accordingly,
+# You finish `module_a.py` accordingly,
 # ```bash
 # echo 'print("this is the third line")' >> module_a.py &&
 # git add module_a.py && git commit -m "consider update of main.py in module_a.py";
 # ```
-# and merge your branch into '_target' and delete the obsolete '_messy_branch'.
+# and merge your branch into `_target` and delete the obsolete `_messy_branch`.
 # ```bash
 # git checkout _target;
 # git merge _messy_branch;
@@ -522,7 +534,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # Using  GitGraph in VSCode (or ```git log --graph --oneline --decorate```) we can investigate the 
-# the commit history of '_target' which now looks as follows.
+# the commit history of `_target` which now looks as follows.
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
@@ -533,11 +545,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
 # How do we read this history?
-# - Three squential commits (blue) were based on commit "add main.py"
+# - Three sequential commits (blue) were based on commit "add main.py"
 # - One commit (pink) was also based on commit "add main.py"
-# - A merge occured: _target (pink) was merged into _messy_branch (blue)
+# - A merge occured: `_target` <span style="color:#FF1493">(pink)</span> was merged into `_messy_branch` <span style="color:blue">(blue)</span>.
 # - As a result, both branches are identical after the merge
-# - Since _messy_branch is missing from the history it has been removed
+# - Since `_messy_branch` is missing from the history it has been removed
 #
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -555,8 +567,8 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - The history does not really reflect the essence of the changes, namely:
 #     - main.py was added and updated
 #     - module_a.py was created on the basis of the current main.py
-# - The commit "Merge branch '_target' into _messy_branch" is distracting 
-# - The fix of spelling errors and the adding of more detail is also superfluous 
+# - The commit `Merge branch '_target' into _messy_branch` is distracting.
+# - The fix of spelling errors and the adding of more detail is also superfluous.
 #
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -564,7 +576,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
-# <figcaption>B: Clean commit history with merge</figcaption>
+# <figcaption>B: Clean (semi-linear) commit history with merge</figcaption>
 # <img src="./figures/r_3_squash_no_ff.png" alt="clean commit history with merge" width=1000/>
 # <div/>
 # <div align="left">
@@ -641,7 +653,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # For this purpose, you can run 
 # ```python3 -m dsc.version_control.git```
 #
-# We have the following commit history before integrating the changes of _target into _messy_branch
+# We have the following commit history before integrating the changes of `_target` into `_messy_branch`.
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
@@ -651,13 +663,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
-# - We can now rebase to get a linear commit history and avoid the superfluous merge if we use (on _messy_branch)  
-# ```git rebase _target```  
-# instead of  
-# ```git merge _target```
+# - We can now rebase to get a linear commit history and avoid the superfluous merge if we use (on `_messy_branch`)  
+# `git rebase _target` instead of `git merge _target`
 # - ```git rebase <branch>``` automatically takes the commits in your current working branch and applies them to the tip of the passed branch.
-# -  In this case, _messy_branch is rebased on the _target commit ```1609999b``` that has the description "add main.py".
-# - Alternatively, you can use ```git rebase 1609999b``` to base the commits in your current working branch on the _target commit ```1609999b```
+# -  In this case, `_messy_branch` is rebased on the `_target` commit `1609999b` that has the description "add main.py".
+# - Alternatively, you can use `git rebase 1609999b` to base the commits in your current working branch on the `_target` commit ```1609999b```
 # - Running ```git rebase _target``` in the terminal yields
 
 # %% [markdown] slideshow={"slide_type": "-"}
@@ -668,7 +678,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
-# - Finishing module_a and merging our commits into _target yields then the following linear commit history.
+# - Finishing module_a and merging our commits into `_target` yields then the following linear commit history.
 # - You can also run ```python3 -m dsc.version_control.git rebase merge``` to produce the following commit history.
 
 # %% [markdown] slideshow={"slide_type": "-"}
@@ -693,7 +703,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # - The only thing other developers will see is your finished commit history, which should be a concise and simple branch history.
 # - You can start and interactive rebase using ```git rebase -i <branch/commit>``` which opens the git-rebase-todo file.
 # - Note that, in contrast to a non-interactive rebase, it makes sense to use an interactive rebase on a commit of the current branch to rewrite its history.
-# - If you do a more complex rebase, I recommend to **backup the branch to be rebased** using ```git branch [<name>]```, where name have the format backup_branch_YYYY_MM_DD.
+# - If you do a more complex rebase, I recommend to **backup the branch to be rebased** using ```git branch [<name>]```, where name could be backup-feature-branch.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # **Options during interactive rebase**  
@@ -712,11 +722,11 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 #         - The suggested commit message for the folded commit is the combination of the first commit and those with the squash command.
 #         - Note that the folded commit is always a new commit with a new SHA
 #     - f, **fixup**: like squash, but don't consider its commit message
-#     - x, **exec**: run command (the rest of the line) using shell
+#     - and some more...
 
 # %% [markdown] slideshow={"slide_type": "subslide"}
 # **Abort and conflicts**
-# - To abort the rebase, enter ctrl + c in the terminal and run ```git rebase --abort```.
+# - To abort the rebase, enter `ctrl + c` in the terminal and run ```git rebase --abort```.
 # - If there are merge errors during rebase the process will stop. 
 #     - If you are done resolving the conflicts you can proceed with ```git rebase --continue```.
 #     - If you want to start another rebase use ```git rebase --abort``` before!
@@ -731,7 +741,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # For this purpose, you can run 
 # ```python3 -m dsc.version_control.git```
 #
-# We have the following commit history before integrating the changes of _target into _messy_branch.
+# We have the following commit history before integrating the changes of `_target` into `_messy_branch`.
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
@@ -741,9 +751,9 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# - Instead of merging _target into _messy_branch we can also rebase _messy_branch on _target using  
-# ```git rebase -i _target```
-# -  Just like for a (non-interactive) rebase,  _messy_branch is rebased on the tip of _messy_branch which is the commit
+# - Instead of merging `_target` into `_messy_branch` we can also rebase `_messy_branch` on `_target` using  
+# `git rebase -i _target`
+# -  Just like for a (non-interactive) rebase, `_messy_branch` is rebased on the tip of `_messy_branch` which is the commit
 # with the description "add main.py".
 # - Executing ```git rebase -i _target``` opens the git-rebase-todo text file with the following first three lines  
 # ```bash
@@ -769,7 +779,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# * We now add the updates to module_a.py that are required due to the update of main.py
+# * We now add the updates to `module_a.py` that are required due to the update of `main.py`
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
@@ -794,20 +804,20 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="left">
-# <figcaption>After interactive rebase of _messy_branch on itself</figcaption>
+# <figcaption>The result of an interactive rebase of _messy_branch on itself</figcaption>
 # <img src="./figures/r_after_second_i_rebase.png" alt="After interactive rebase of _messy_branch on itself" width=1000/>
 # <div/>
 # <div align="left">
 # <div/>
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# * We are now free to merge _messy_branch into _target using 
-#     - or a three-way merge with an additional merge message
+# * We are now free to merge `_messy_branch` into `_target` using 
+#     - A three-way merge with an additional merge message
 #     ```bash
 #         git checkout _target;
 #         git merge _messy_branch --no-ff
 #     ```
-#     - a fast-forward merge
+#     - A fast-forward merge
 #     ```bash
 #         git checkout _target;
 #         git merge _messy_branch
@@ -959,7 +969,7 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # -  Click [here](https://docs.gitlab.com/ee/topics/gitlab_flow.html) and  [here](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy) for a comparions of some flows.
 #
 
-# %% [markdown]
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ## Git flow
 # - Uses two main branches to record the history of the project
 #     - The branch `main` is the official release history and contains the production-ready code.
@@ -979,14 +989,12 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 # <img src="./figures/gitflow.png" alt="Git flow" width=700/>
 # <div/>
 
-# %%
-
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Versioning Jupyter notebooks
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
 # - Notebooks are .json files which contain metadata, input and output of cells
-# - For instance, the first 31 lines of lecture_notes/1_version_control/0_intro.ipynb are given by
+# - For instance, the first 31 lines of lecture_notes/2_version_control/0_intro.ipynb are given by
 
 # %% slideshow={"slide_type": "fragment"}
 !cat 0_intro.ipynb | head -n 31
@@ -1055,14 +1063,14 @@ embed_website("https://learngitbranching.js.org/?locale=de_DE&NODEMO")
 !git checkout -b _jupytext
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# * Convert this notebook into a .py script named '1_git_percent.py' using the percent format
+# * Convert this notebook into a .py script named `1_git_percent.py`using the percent format
 
 # %% slideshow={"slide_type": "-"}
 !jupytext --to py:percent --out 1_git_percent.py 1_git.ipynb
 !cat 1_git_percent.py | head -n 25
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# - Convert this notebook into a .py script named '1_git_light.py' using the default light format
+# - Convert this notebook into a .py script named `1_git_light.py` using the default light format
 
 # %% slideshow={"slide_type": "-"}
 !jupytext --out 1_git_light.py 1_git.ipynb
@@ -1093,11 +1101,11 @@ for file in ['1_git_light.ipynb', '1_git_light.py', '1_git_percent.ipynb', '1_gi
 # %% [markdown] slideshow={"slide_type": "slide"}
 # Hint:  
 #
-# If you want to automatically convert a notebook to a .py script with percent format in the subfolder notebook_as_py whenever you save it do the following.  
+# If you want to automatically convert a notebook to a .py script with percent format into the folder `_notebook_as_py` whenever you save it do the following.  
 #
 # Create the file **jupytext.toml** in the root directory of your project with the following content.
 # ```
-# formats = "ipynb,notebook_as_py//py:percent"
+# formats = "ipynb,_notebook_as_py//py:percent"
 # ``` 
 
 # %% [markdown] slideshow={"slide_type": "slide"}

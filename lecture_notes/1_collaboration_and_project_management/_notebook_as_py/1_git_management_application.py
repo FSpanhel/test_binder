@@ -8,9 +8,9 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_2022]
+#     display_name: Python [conda env:dsc] *
 #     language: python
-#     name: conda-env-dsc_2022-py
+#     name: conda-env-dsc-py
 # ---
 
 # %% slideshow={"slide_type": "notes"}

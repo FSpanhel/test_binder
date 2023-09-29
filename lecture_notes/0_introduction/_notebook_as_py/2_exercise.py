@@ -14,7 +14,7 @@
 # ---
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Questions regarding next week's topic (version control)
+# # Questions regarding the next topic (version control)
 #
 # Please use https://partici.fi/30119096, or scan the QR code below, to answer the questions about version control.
 

@@ -8,13 +8,13 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc]
+#     display_name: Python [conda env:dsc] *
 #     language: python
 #     name: conda-env-dsc-py
 # ---
 
 # %% [markdown] slideshow={"slide_type": "slide"} solution="hidden"
-# # Questions regarding next week's topic (Python project setup)
+# # Questions regarding the next topic (Python project setup)
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # Click [here](https://partici.fi/26194946), or scan the QR code below, to answer the questions about setting up your Python project.

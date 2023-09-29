@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.14.0
+#       jupytext_version: 1.14.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -23,7 +23,7 @@ from dsc.notebook import embed_website
 #     
 # <div align="left" style="font-size:16px;">
 # <div/>
-# <div align="left">
+# <div align="center">
 # <img src="./figures/vc_intro_commitstrip.png" alt="VC" width=700/>
 # <div/>
 # <div align="left">
@@ -31,10 +31,10 @@ from dsc.notebook import embed_website
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # Agenda
-# - Review of [Q&A](https://partici.fi/83687465).
+# - Review of [Q&A](https://partici.fi/30119096).
 #
 # <div align="center">
-# <img src="../0_introduction/figures/0_p.png" alt="drawing" width="1200"/>
+# <img src="../0_introduction/figures/2_p.png" alt="drawing" width="1200"/>
 # </div>
 #
 # <div align="left" style="font-size:16px;">
@@ -118,7 +118,7 @@ from dsc.notebook import embed_website
 # |                 | Database queries |       Files      | Databases      |   |
 # |:---------------:|:----------------:|:----------------:|:--------------:|---|
 # | **Git-centric** |        Git       | Git-LFS, DVC,... |         x      |   |
-# |  **De-coupled** |         x        |    Mlfow, ...    | DataLake, Dolt |   |
+# |  **De-coupled** |         x        |    MLflow, ...    | DataLake, Dolt |   |
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # - **Git-centric**:
@@ -128,7 +128,7 @@ from dsc.notebook import embed_website
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # - **De-coupled**:
-#     - You can "misuse" tools like [Mlflow](https://mlflow.org/) or [Tensorboard](https://www.tensorflow.org/tensorboard) to track data as a hyperparameter.
+#     - You can "misuse" tools like [MLflow](https://mlflow.org/) or [Tensorboard](https://www.tensorflow.org/tensorboard) to track data as a hyperparameter.
 #     - There a tools to directly **version databases**, e.g., [(Databricks) Delta Lake](https://delta.io/), or [Dolt](https://github.com/dolthub/dolt) for MySql.
 
 # %% slideshow={"slide_type": "slide"}
@@ -157,8 +157,8 @@ embed_website("https://git-lfs.github.com/", height=300)
 # - But **GitHub has a strong limit on storage and bandwith consumption**, so that you have to buy more storage if you files and the number of transfers is not small. 
 # - Thus, Git-LFS might be best for files that do not exceed 1 GB and do not change too much. 
 # - Details:
-#     - https://about.gitlab.com/pricing/
-#     - https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage and https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage
+#     - [GitLab pricing](https://about.gitlab.com/pricing/)
+#     - [GitHub and Git-LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) and [GitHub Git-LFS storage and bandwith usage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # **Resources**
@@ -188,7 +188,7 @@ embed_website("https://dvc.org/")
 #     - Pipelines which connect versioned datasets, model and code
 #     - Compare metrics and view plots across different commits 
 #     - CICD
-#     - Python API: https://dvc.org/doc/api-reference
+#     - [Python API](https://dvc.org/doc/api-reference)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # DVC is a **good solution** 
