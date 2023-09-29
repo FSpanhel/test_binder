@@ -5,7 +5,7 @@ import sys
 from dsc.notebook import git_root
 from dsc.shell import RunCMDError, list_files, run_cmd
 
-source_branch = "main"
+source_branch = "13-push-first-version-of-the-course"
 target_branch = "hm_2023_dev"
 
 log_file = os.path.join(git_root(), "_organization", f"{target_branch}.log")
@@ -21,6 +21,7 @@ if False:
             r"^_(?!_)",
             r"/_(?!_)",
             r"src/dsc/[a-z]",
+            r"data/(?!.+\.dvc|\.gitignore)"
         ],
         exclude_files_unknown_to_git=True,
     )
@@ -37,8 +38,9 @@ class IncludeFiles:
                 # ".egg-info"  # Unknown to Git: Should not be versioned with Git
             ]
             folders = [
-                "data/",  # Do I need to create this folder?
-                "docs/",  # Because this should be build later
+                # So that data/dvc.db.dvc and .gitignore is included
+                r"data/(?!.+\.dvc|\.gitignore)",
+                "docs",  # Because this should be build later
             ]
             folders.extend(dot_folders)
             files = [
