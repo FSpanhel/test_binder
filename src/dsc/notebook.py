@@ -1,15 +1,9 @@
 """
 Contains utility functions that are used for all lectures
 like embeding webpages into a Jupyter notebook.
-If run as a script, the
-[nb extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions)
-are configured according to `.jupyter/nbconfig`. In particular, since the sidebar of
-toc2 does not work anymore in recent versions, it is disabled and the floating
-toc window is used to imitate it.
 """  # noqa
 
 
-import logging
 import os
 
 from IPython.display import IFrame  # type: ignore
@@ -81,26 +75,3 @@ def set_wd() -> None:
     project_root = git_root()
     if os.getcwd() != project_root:
         os.chdir(project_root)
-
-
-if __name__ == "__main__":
-    # Set .jupyter as JUPYTER_CONFIG_DIR so that .jupyter/nbconfig/notebook.json
-    # is considered by
-    # https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions
-
-    logging.basicConfig(level=logging.INFO, force=True)
-    logger = logging.getLogger(__name__)
-
-    config_dir = f"{git_root()}/.jupyter"
-
-    logger.info(f"Setting JUPYTER_CONFIG_DIR={config_dir}")
-
-    # If the OS is unix-based, we could also use
-    # https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html#macos-and-linux  # noqa
-    # for the next step
-    run_cmd(f"conda env config vars set -n dsc JUPYTER_CONFIG_DIR={config_dir}")
-
-    # Need to reactivate the environment
-    env_path = run_cmd("echo $CONDA_PREFIX", shell=True)[0]
-    if os.path.basename(env_path) == "dsc":
-        run_cmd("mamba deactivate && mamba activate dsc")

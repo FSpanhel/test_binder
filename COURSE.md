@@ -50,7 +50,7 @@ with notes and tasks that you can tackle in the tutorials.
 - For this purpose, write an eMail to spanhel@hm.edu with the subject '**dsc project preference**' which includes
     - Your **full name**.
     - The **number of your preferred project**.  
-- Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 3, 2022**.
+- Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 3, 2023**.
   - If there is more than one group for a project, the assignment of students to a group will be random.
 - I will support you during the second part by **answering questions and providing suggestions** during the lecture and tutorial.
 - Moreover, I will have a look at your code and **approve merge requests** for the main
@@ -62,7 +62,7 @@ branch of your project.
     - December 23: Code modularization and creation of scripts.
     - January 13: Final discussion on open points.
 - I also recommend that **you have already worked on the topics that we discuss** on a date so that I can provide feedback and suggest further steps. This way you can get the most out of it.
-- Therefore, you should start your project work from November 25, 2022.
+- Therefore, you should start your project work from November 25, 2023.
 - I will be able to talk to each group for at least (90 * 2) / [number of groups] minutes during the lecture/tutorial. If a group requires less time, the available time for other groups will increase correspondingly.
 
 
@@ -73,8 +73,8 @@ In order to be graded, you have to **submit your project code** and then **give 
 ## Code
 ### Submission
 - Before your project starts, you will be provided with a remote Git repo hosted on GitLab with the two branchens `main` and `submission`.
-- The code of your collaborative project must be submitted <span style="color:red">**before**</span> **Sunday, January 14, 2023**.
-- **Submitted means** that on 2023-01-14 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
+- The code of your collaborative project must be submitted <span style="color:red">**before**</span> **Sunday, January 14, 2024**.
+- **Submitted means** that on 2024-01-14 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
 - Your project will then be evaluated on the state of the `submission` branch after this attempt has been made.
 - Note that merge requests that cannot be merged will not be considered and you as a team are responsible for ensuring that I can run your code.
 - **The code submission should contain the following four components**:  
@@ -117,7 +117,7 @@ In order to be graded, you have to **submit your project code** and then **give 
 
 
 ## Presentation
-- The presentations will take place on **Friday, January 19, 2023,** in room R2.012 from **15:00-19:00**.
+- The presentations will take place on **Friday, January 19, 2024,** in room R2.012 from **15:00-19:00**.
 - Each group presents their work (task, approach, repo overview, problems, findings, results).
 - **Each member of a group presents for about 10 minutes** and will be graded individually.
 - You must attend every presentation, not just your own.
@@ -147,7 +147,7 @@ The GitLab project https://gitlab.lrz.de/dsc/2023/playground can be used to expl
 # Prerequisites
 Basic knowledge of
 - Unix shell, e.g., bash or zsh.
-    - You should know the commands ```pwd, cd, ls, cp, mv``` and now how to access files and directories using ```.., .```
+    - You should know the commands ```pwd, cd, ls, cp, mv``` and know how to access files and directories using ```.., .```
 - Python3 and standard data science packages like pandas or scikitlearn.
 - Juypter notebooks
     - Start a notebook from the terminal and viewing it with a browser.

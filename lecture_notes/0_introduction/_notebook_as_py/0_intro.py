@@ -8,9 +8,9 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_dev] *
+#     display_name: Python [conda env:dsc] *
 #     language: python
-#     name: conda-env-dsc_dev-py
+#     name: conda-env-dsc-py
 # ---
 
 # %% slideshow={"slide_type": "skip"}
@@ -55,7 +55,7 @@ set_wd()
 # <div/>
 # <br>
 #
-# - Studied economics with a focus on econometrics & statistics
+# - Studies in economics with a focus on econometrics & statistics
 # - PhD in statistics
 # - Since November 2016 working as a Data Scientist at ProSiebenSat.1
 # - Aquarius, [INTJ](https://www.16personalities.com/), likes doing sports
@@ -141,7 +141,7 @@ set_wd()
 # - For this purpose, write an eMail to spanhel@hm.edu with the subject '**dsc project preference**' which includes
 #     - Your **full name**.
 #     - The **number of your preferred project**.  
-# - Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 3, 2022**. 
+# - Each student will then be assigned to a project by considering his/her preferences by no later than **Friday, November 3, 2023**. 
 #   - If there is more than one group for a project, the assignment of students to a group will be random.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -167,8 +167,8 @@ set_wd()
 # %% [markdown] hide_input=false slideshow={"slide_type": "slide"}
 # ## Code submission
 # - Before your project starts, you will be provided with a remote Git repo hosted on GitLab with the two branchens `main` and `submission`.
-# - The code of your collaborative project must be submitted <span style="color:red">**before**</span> **Sunday, January 14, 2023**.
-# - **Submitted means** that on 2023-01-14 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
+# - The code of your collaborative project must be submitted <span style="color:red">**before**</span> **Sunday, January 14, 2024**.
+# - **Submitted means** that on 2024-01-14 00:00:00 an attempt will be made to merge all active merge requests whose target branch is `submission`.
 # - Your project will then be evaluated on the state of the `submission` branch after this attempt has been made.
 # - Note that merge requests that cannot be merged will not be considered and you as a team are responsible for ensuring that I can run your code.
 # - **The code submission should contain the following four components**:  
@@ -213,7 +213,7 @@ set_wd()
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## Presentation
-# - The presentations will take place on **Friday, January 19, 2023,** in room R2.012 from **15:00-19:00**.
+# - The presentations will take place on **Friday, January 19, 2024,** in room R2.012 from **15:00-19:00**.
 # - Each group presents their work (Task, approach, repo overview, problems, findings, results).
 # - **Each member of a group presents for about 10 minutes** and will be graded individually.
 # - You must attend every presentation, not just your own.
@@ -225,7 +225,7 @@ set_wd()
 # - All materials for this course are provided by the GitLab project https://gitlab.lrz.de/dsc/2023/course.
 # - Information about the Git repo, e.g., how to clone it and setup the environment can be found in [README.md](../../README.md).
 # - The file [COURSE.md](../../COURSE.md) contains information about this course that is also covered in this notebook.
-# - Material for the lecture and the tutorial is provided in the folder [lecture notes](../lecture_notes) and will be updated regularly.
+# - Material for the lecture and the tutorial is provided in the folder [lecture notes](../../lecture_notes) and will be updated regularly.
 #     
 
 # %% [markdown] slideshow={"slide_type": "slide"}
@@ -243,7 +243,7 @@ set_wd()
 # # Prerequisites
 # Basic knowledge of 
 # - Unix shell, e.g., bash or zsh.
-#     - You should know the commands ```pwd, cd, ls, cp, mv``` and now how to access files and directories using ```.., .```
+#     - You should know the commands ```pwd, cd, ls, cp, mv``` and know how to access files and directories using ```.., .```
 # - Python3 and standard data science packages like pandas or scikitlearn.
 # - Juypter notebooks
 #     - Start a notebook from the terminal and viewing it with a browser.
@@ -253,7 +253,7 @@ set_wd()
 #     - Adding and committing changes to Git.
 #     - Working with remotes, e.g., the difference between fetch and pull.
 #     - Working with branches, e.g., checkout branches and merging.
-#     - See [Git resources](COURSE.md) for brushing up your Git skills.
+#     - See [Git resources](../../COURSE.md#Git-resources) for brushing up your Git skills.
 # - SQL: Simple queries with filters and joins
 #
 # And a basic understanding of statics and machine learning (e.g., linear regression, boosting, trees...).
@@ -375,7 +375,7 @@ set_wd()
 #     - Use `cd [folder]` to move to a particular folder.
 #     - I recommend to navigate to your home directory using `cd ~`, create a folder using `mkdir [folder]`, e.g. `mkdir -p git_repos/study/data_science_challenge`, and then switch to this folder using `cd [folder]`
 # - To clone the repo with SSH into the current working directory
-#     - [Set up SSH keys to communicate with GitLab]((https://docs.gitlab.com/ee/user/ssh.html).
+#     - [Set up SSH keys to communicate with GitLab](https://docs.gitlab.com/ee/user/ssh.html).
 #     - Run the following command in the terminal.
 #     ```sh
 #     git clone git@gitlab.lrz.de:dsc/2023/course.git
@@ -409,8 +409,27 @@ set_wd()
 # ## Configuring and starting notebook servers
 
 # %% [markdown] slideshow={"slide_type": "fragment"}
-# - First of all, activate the `dsc` environment in the terminal.
-# - To set the notebook extensions, run ```python3 -m dsc.notebook``` in the terminal. 
+# - First of all, if your prompt does not begin with (dsc), activate the `dsc` environment in the terminal using `mamba activate dsc`
+# - From the root of the course repo, run
+#     ```shell
+#     mamba env config vars set -n dsc JUPYTER_CONFIG_DIR=$(pwd)/.jupyter &&
+#     mamba deactivate &&
+#     mamba activate dsc
+#     ```
+#     to set the configuration folder of Jupyter to the `.jupyter` folder in the root of the course repo.
+#     In particular, this configures the [nb extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions) according to `.jupyter/nbconfig`
+#
+# <!--
+# [nb extensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions)
+# are configured according to `.jupyter/nbconfig`. In particular, since the sidebar of
+# toc2 does not work anymore in recent versions, it is disabled and the floating
+# toc window is used to imitate it.
+#
+# To set this environment variable for a unix-based OS you can use 
+# https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html#macos-and-linux
+# Setting this environment variable using dsc.shell.run_cmd does not work.
+# -->
+#
 # - Run ```jupyter notebook``` in the terminal to start a notebook server that can be accessed via a browser.
 #
 # - To present notebooks located in the folder `lecture_notes` as slides press `alt + r`.
@@ -427,7 +446,7 @@ set_wd()
 # - Save the database as `data/dsc.db` in this project (meaning that the parent folder of data is the root of this Git repo)
 # -->
 
-# %% [markdown] slideshow={"slide_type": "-"} cell_style="split"
+# %% [markdown] cell_style="split" slideshow={"slide_type": "-"}
 # - Email your Gmail address to spanhelhm@gmail.com
 #     - In case you don't have a Google account, please [create an account](https://accounts.google.com/).
 #     - If you don't want to provide your email or phone number you can use throw-away accounts.
@@ -452,7 +471,7 @@ set_wd()
 #     <div align="center">
 #     <img src="./figures/wsl_dvc_gdrive_0.png" alt="drawing" width="1000"/>
 #     </div>
-# - Press `A` when this emulated browser window appears.
+# - Enter `A` when this emulated browser window appears.
 # - The emulated browser window then changes to 
 #     <div align="center">
 #     <img src="./figures/wsl_dvc_gdrive_1.png" alt="drawing" width="1000"/>
