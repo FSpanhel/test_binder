@@ -8,7 +8,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.4
 #   kernelspec:
-#     display_name: Python [conda env:dsc_dev] *
+#     display_name: Python [conda env:dsc_dev]
 #     language: python
 #     name: conda-env-dsc_dev-py
 # ---

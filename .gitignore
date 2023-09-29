@@ -16,10 +16,6 @@
 
 ############################## 1. PROJECT-SPECIFIC ##############################
 
-##### Fabi ######
-data/_create/csv/*
-# data/dsc.db
-# data/csv
 _windows
 
 ############################## 2. WINDOWS #################################
@@ -110,7 +106,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+# *.log
 local_settings.py
 db.sqlite3
 

@@ -1,5 +1,5 @@
 """
-This package consist of modules that are mainly used for the lecture notes of
+This package consist of modules that are used for the lecture notes of
 the Data Sience Challenge.
 """
 import sys

@@ -1,4 +1,8 @@
-""" Data which is used in /lecture_notes/0_introduction/1_data_and_projects.ipynb"""
+"""
+Data which is used in /lecture_notes/0_introduction/1_data_and_projects.ipynb
+"""
+
+
 import pandas as pd
 
 example_pin = pd.DataFrame(

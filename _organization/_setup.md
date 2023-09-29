@@ -15,9 +15,8 @@ git remote set-url --add --push origin git@gitlab.lrz.de:fspanhel/dsc_private.gi
 ```
 #### hm
 ```
-# git remote add hm git@gitlab.lrz.de:fspanhel/dsc.git;
-# git fetch hm main;
-# git cob hm_2022 hm/main;
+git remote add hm git@gitlab.lrz.de:dsc/2023/course.git
+# git push -f {remote} {target_branch}:main
 ```
 
 #### p7

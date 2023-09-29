@@ -1,8 +1,6 @@
 """
 Provides the function `run_cmd` to execute shell commands from Python.
 
-This module is mainly used interally for `ds.inspect`.
-
 For more sophisticated subprocesses have a look at
 [delegator](https://github.com/amitt001/delegator.py).
 
@@ -133,11 +131,6 @@ def run_cmd(
     Moreover, it captures the stderr stream of a possible
     `subprocess.CalledProcessError` by rasing `RunCMDError`.
 
-    Limitations:
-        `run_cmd("git checkout branch -- file")` raises the error that
-        'file' did not match any file(s) known to git. Setting `shell` to True
-        makes no difference and `os.system` throws the same error.
-
     Args:
         cmd: Shell command that should be run.
         cwd: Working directory of the shell. By default, the current working
@@ -195,61 +188,7 @@ def run_cmd(
             traceback.print_exc()
         ```
     """  # noqa
-    """ Explanation of the parameter print_stderr
-    ChatGPT: "What is the meaning of stderr in subprocess.check_output in Python?"
 
-    In Python's subprocess module, the subprocess.check_output() function is
-    used to run a command as a subprocess and capture its standard output
-    (stdout). The stderr (standard error) is a separate stream where error
-    messages and diagnostics are typically printed.
-
-    When you use subprocess.check_output(), you capture the standard output of
-    the command you're running, which is usually the regular program output.
-    By default, the standard error stream is not captured and will still be
-    printed to the console.
-
-    If you want to capture both standard output and standard error, you can set
-    the stderr argument to subprocess.STDOUT. This will merge the standard error
-    stream into the standard output stream, allowing you to capture both in a
-    single output.
-
-    Here's an example:
-
-    ```python
-    import subprocess
-
-    # Run a command and capture its stdout and stderr
-    try:
-        result = subprocess.check_output(
-            ["ls", "-l", "nonexistent_file"], stderr=subprocess.STDOUT
-        )
-        print("Output:", result.decode("utf-8"))
-    except subprocess.CalledProcessError as e:
-        print("Error:", e.returncode)
-        print("Output:", e.output.decode("utf-8"))
-        print(e)
-    ```
-
-    In this example, the ls -l nonexistent_file command is run. Since the file
-    doesn't exist, an error message is printed to the standard error stream.
-    By using stderr=subprocess.STDOUT, we capture both the standard output and
-    the standard error output into the output attribute of the CalledProcessError
-    exception.
-
-    By default, if you don't specify stderr=subprocess.STDOUT, only the standard
-    output will be captured using check_output(), and the standard error will
-    still be printed to the console.
-
-    Note that in the above example,
-        - print(e.returncode) yields "ls: cannot access 'nonexistent_file': No
-            such file or directory"
-        - print(e.output.decode("utf-8")) yields "2"
-        - print(e) only yields
-            "CalledProcessError: Command '['ls', '-l', 'nonexistent_file']'
-            returned non-zero exit status 2."
-
-    If stderr is not specified then print(e) yields an empty string.
-    """
     # Command must be given as string if shell is True, e.g., https://stackoverflow.com/a/54765780  # noqa
     if shell is True:
         parsed_cmd = cmd
@@ -329,58 +268,48 @@ class TemporaryScript:
 
 
 def list_files(
-    folder,
-    exclude_folder_pattern: None | list[str] = None,
-    exclude_file_pattern: None | list[str] = None,
+    folder: str = ".",  # do not use absolute paths here
+    exclude_pattern: None | list[str] = None,
     exclude_files_unknown_to_git: bool = False,
 ) -> list[str]:
-    """
-    Folder in exclude must start with "./"
-    """
-    if exclude_folder_pattern is None:
-        exclude_folder_pattern = []
-    if exclude_file_pattern is None:
-        exclude_file_pattern = []
+    if exclude_pattern is None:
+        exclude_pattern = []
 
     if exclude_files_unknown_to_git:
         files_known_to_git = run_cmd("git ls-files")
     else:
         files_known_to_git = []
 
-    def _exclude(folder, exclude_folder_pattern):
-        for pattern in exclude_folder_pattern:
+    def _exclude(folder, exclude_pattern):
+        # TODO: Instead of a loop could use | to combine exclude patterns
+        for pattern in exclude_pattern:
             if re.search(pattern, folder):
                 return True
             else:
                 continue
+        return False
 
     result = []
 
     for root, _, files in os.walk(folder):
-        root = root[2:]  # Remove "./" at the start
-        if root.startswith("data"):
-            pass
-            # import pdb; pdb.set_trace()
-        if _exclude(root, exclude_folder_pattern):
+        root = root[2:]
+        # print(root)
+        # print(files)
+        # Not necessary, but if this is True then we don't have to iterate over files
+        if _exclude(root, exclude_pattern):
             continue
         else:
             for file in files:
-                if _exclude(file, exclude_file_pattern):
+                # if file == "data.py":
+                #     import pdb; pdb.set_trace()
+                file_path = os.path.join(root, file)
+                # if file_path == 'src/dsc/notebook.py':
+                #   import pdb; pdb.set_trace()
+                if _exclude(file_path, exclude_pattern):
                     continue
-                else:
-                    file_path = os.path.join(root, file)
+                if exclude_files_unknown_to_git:
                     if file_path not in files_known_to_git:
-                        pass
-                    else:
-                        result.append(file_path)
+                        continue
+                print(file_path)
+                result.append(file_path)
     return result
-
-
-def checkout_branch_on_the_basis_of_the_initial_commit(
-    target_branch: str, exists: bool = True
-) -> str:
-    hash_of_initial_commit = run_cmd("git rev-list --max-parents=0 HEAD")[0]
-    if not exists:
-        return f"git checkout -b {target_branch} {hash_of_initial_commit}"
-    else:
-        return f"git checkout {target_branch}"

@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.14.0
+#       jupytext_version: 1.14.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -14,9 +14,9 @@
 # ---
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# # Questions regarding next week's topic (version control)
+# # Questions regarding the next topic (version control)
 #
-# Please use https://partici.fi/30119096, or scan the QR code below, to awnser the questions about version control.
+# Please use https://partici.fi/30119096, or scan the QR code below, to answer the questions about version control.
 
 # %% [markdown] slideshow={"slide_type": "-"}
 # <div align="center">
