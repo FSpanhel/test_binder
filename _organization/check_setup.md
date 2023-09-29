@@ -24,4 +24,4 @@ dvc pull
 *Start notebook from dsc environment and check whether it runs*
 0_introduction -> RUNS
 1_collaboration_and_project_management -> RUNS
-2_version_control ->
+2_version_control -> dvc chapter not checked, but RUNS otherwise. Maybe split 1_git.ipynb into several notebooks?
