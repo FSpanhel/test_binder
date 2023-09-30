@@ -7,7 +7,7 @@
   - [x] Atomit commit exercise
   - [x] Branches
   - [x] Other stuff in Word Doc
-- [ ] Update commit_to_hm_branch.py
+- [x] Update commit_to_hm_branch.py
 - [x] Push first initial commit to course and playground
   - [x] Set up GitLab repos
     - [x] Main protected, only I can push
@@ -18,7 +18,8 @@
 - [ ] Try software install with Isabella  
 - [ ] Check binder
 - [ ] Presenter kaufen
-- [ ] Whiteboard + Studierende den Gruppen zuordnen
+- [x] Whiteboard + Studierende den Gruppen zuordnen
+- [ ] Bei der Abschlusspräsentation evtl. Studierende anderer Semester einladen?
 
 - [x] rename lecture_notes/1_version_control to lecture_notes/2_version_control
 - [x] Rename lecture_notes/3_code/0_python_guidelines_and_tools.ipynb to lecture_notes/3_code/0_python_standards_and_tools.ipynb
@@ -40,7 +41,6 @@
 - [x] commit und dann dvc notebook laufen lassen und commit
 - [x] push
 - [x] browser aufräumen
-- [ ] presenter holen
 - [ ] studenten sollen PATH="" mal setzen
 
 # optional
@@ -77,6 +77,7 @@ lecture_notes/intro_and_setup
 - [x] Notebook starten -> TOC wird nicht richtig angezeigt, Browser Problem? -> fixed
 - [x] Umstellen des Repos auf Gruppenrepo damit kein Projektlimit, siehe https://doku.lrz.de/gitlab-10332895.html#GitLab-Projektlimit
 - [ ] Evtl. sagen dass ChatGPT NLP Leute vertreibt? + Slide einfügen nach Slide 5. DS is very competitive (Bootcamps, Masters), fancy shit, viele Unternehmen sind nicht so weit, Überangebot an Leute die das wollen.
+- [ ] Evtl. DS vs. ML Engineer, Reddit Article -> Deshalb auch mal in Richtung ML Engineer ausbilden.
 - [x] Add dvc for data:
   - [x] Add to environment.yml
   - [x] Add dvc remotes:
@@ -141,10 +142,7 @@ to code_structure?
 - package downgrade so dass nicht read and load schon da sind? -> nicht unbedingt nötig
 
 
-
-
 Bei der Verteilung der Projektgruppen auch nach einer Selbsteinschätzung fragen damit die Gruppen ausgeglichen sind
-
 
 - In jedes Notebook einen code reference machen mit den commands die man in diesem Kapitel gelernt hat,
 das ist gut damit die Studenten sich zurecht finden
@@ -152,18 +150,16 @@ das ist gut damit die Studenten sich zurecht finden
     - https://www.codementor.io/@stevek/advanced-python-debugging-with-pdb-g56gvmpfa
     -  In Jupyter notebooks you can use the magic command %debug
 
-
-
 presentation:
 **Gut wäre es wenn die Studenten auf die Präsi auch draufschreiben wer welche Folie präsentiert, so dass es für mich klarer ist, wer was vorgestellt hat**
 
  Improvements:
  - Evtl. Sehb für all channels geben? Und nicht auch TVG für Ausstrahlung?
- - Das nächste mal direkt von Anfang an mit Issues arbeiten wenn es Updates gibt?
- - Evaluation beachtet: Mit der Projektarbeit schon früher anfangen
+ - [x] Das nächste mal direkt von Anfang an mit Issues arbeiten wenn es Updates gibt?
+ - [x] Evaluation beachtet: Mit der Projektarbeit schon früher anfangen
  - Quatro statt Notebooks benutzen?
- - Bewertung Studenten: Es hat fast nie jemand was zu MRs gesagt, außer Niklas
+ - Bewertung Studenten: Es hat fast nie jemand was zu MRs gesagt, außer Niklas.
  - Vll. sollten die Studenten nur mit scikit-learn arbeiten dürfen? Dann lernen sie mehr basics
- - Im DVC Kapitel müssen sie gdrive mit hm.dvc2022@gmail.com teilen und nicht mit spanhel@hm.edu
- - Da es mit Windows Probleme gibt, WSL empfehlen!
+ - [x] Im DVC Kapitel müssen sie gdrive mit hm.dvc2022@gmail.com teilen und nicht mit spanhel@hm.edu
+ - [x] Da es mit Windows Probleme gibt, WSL empfehlen!
  - Evaluation direkt im Kurs machen und nicht online um die Antwortrate zu erhöhen

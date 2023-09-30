@@ -1,3 +1,7 @@
+"""
+Run `python3 _organization/commit_to_hm_branch.py [number]`
+where [number] is the number of the commit.
+"""
 import logging
 import os
 import sys
@@ -7,7 +11,7 @@ from dsc.shell import RunCMDError, list_files, run_cmd
 
 # source_branch = "13-push-first-version-of-the-course"
 source_branch = "main"
-target_branch = "hm_2023_dev"
+target_branch = "hm_2023"
 
 log_file = os.path.join(git_root(), "_organization", f"{target_branch}.log")
 logging.basicConfig(filename=log_file, force=True, level=logging.INFO)
