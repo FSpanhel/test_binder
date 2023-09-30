@@ -9,7 +9,7 @@ wget -P ~ $url
 bash ~/$mamba -b -p $mamba_folder
 
 # Initialize shells:
-echo -e "\n> Initialize activation scripts for bash and zsh. Start a new terminal session to activate new environments."
+echo -e "\n> Initialize activation scripts for bash and zsh."
 dry_run "source $mamba_folder/bin/activate"
 dry_run "mamba init bash || true"
 dry_run "mamba init zsh || true"
@@ -19,5 +19,6 @@ echo -e"\n> Remove downloaded mamba installation file $mamba."
 rm ~/$mamba
 
 # Source rc files so that commands are known and we don't have to open a new session
+echo -e "\n> Source ~/.bashrc and ~/.zshrc so that we don't have to start a new session."
 dry_run "source ~/.bashrc || true"
 dry_run "source ~/.zshrc || true"
