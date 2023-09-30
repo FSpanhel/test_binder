@@ -388,7 +388,7 @@ dependencies:
   - zlib=1.2.13=hd590300_5
   - zstd=1.5.5=hfc55251_0
   - pip:
-      - dsc==0.0.post1.dev17+gd5c50b5.d20230917
+      - -e .
       - rise==5.7.1
 variables:
   JUPYTER_CONFIG_DIR: /home/spa0001f/github/teach/dsc_new/.jupyter
