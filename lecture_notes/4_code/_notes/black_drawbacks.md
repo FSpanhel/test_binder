@@ -1,5 +1,0 @@
-- black problems:
-  - Black is not honoring #fmt: skip when a hash becomes before https://github.com/psf/black/issues/3460
-  - No option to ignore in-line comments https://github.com/psf/black/issues/3450
-    - Workaround: Add comment not at the end of the code line but on the line above
-  - I don't like the formatting of fluent interfaces, see https://github.com/psf/black/issues/3449
